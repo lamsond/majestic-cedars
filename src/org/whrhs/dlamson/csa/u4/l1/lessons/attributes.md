@@ -34,7 +34,10 @@ Some attributes will be common to all members of a class, while others will be u
 | attribute | pinky | inky | blinky | cylde |
 | --------- | ----- | ---- |------- | ----- |
 | color | pink | cyan | red | orange |
-| 
+| size | 50px | 50px | 50px | 50px |
+| speed | 5 | 10 | 5 | 8
+| (x, y) | (100, 100)| (45, 123) | (232, 101) | (23, 200) |
+
 ### 4.2.3 Public vs. Private Attributes
 
 ## 4.3 Methods
