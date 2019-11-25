@@ -23,8 +23,10 @@ public class Zeta {
 			System.out.print(3);
 		System.out.print(4);
 		
-		double x = -0.2;
-		double y = x / 3;
-		System.out.println("\n" + (y * 3 - x < 0.0001));
+		//for(double x = 100; x > -100; x-= 0.3333333333333333333) {
+			double x = 99.666666666666666;
+			double y = x / 3;
+			System.out.println("x: " + x + " y: " + y*3 + " result: " + (y*3 == x));
+		//}
 	}
 }
