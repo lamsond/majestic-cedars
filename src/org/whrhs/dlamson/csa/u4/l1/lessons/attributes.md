@@ -31,12 +31,14 @@ In the code above `x`, is an *attribute* of the `Pacman` class. Since `speed` is
 
 Some attributes will be common to all members of a class, while others will be unique. For example, consider the four ghosts in Pacman.
 
+
 | attribute | pinky | inky | blinky | cylde |
 | --------- | ----- | ---- |------- | ----- |
 | color | pink | cyan | red | orange |
 | size | 50px | 50px | 50px | 50px |
 | speed | 5 | 10 | 5 | 8 |
 | (x, y) | (100, 100)| (45, 123) | (232, 101) | (23, 200) |
+
 
 ### 4.2.3 Public vs. Private Attributes
 
