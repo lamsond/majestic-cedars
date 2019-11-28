@@ -9,8 +9,8 @@ import javax.swing.JPanel;
 public class HockeyPanel extends JPanel{
 	
 	public static final int MARGIN = 10;
-	public static final int LENGTH = Ice.LENGTH + 2*MARGIN;
-	public static final int WIDTH = Ice.WIDTH + 2*MARGIN;
+	public static final int LENGTH = Ice.LENGTH + 4*MARGIN;
+	public static final int WIDTH = Ice.WIDTH + 6*MARGIN;
 	
 	private Ice ice;
 	
@@ -23,6 +23,6 @@ public class HockeyPanel extends JPanel{
 	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
-		ice.drawIce(g2d);
+		ice.drawIce(g2d, MARGIN, MARGIN);
 	}
 }
