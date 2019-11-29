@@ -27,6 +27,7 @@ public class HockeyPanel extends JPanel{
 	public void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		ice.draw(g2d, MARGIN, MARGIN);
-		goal.draw(g2d,  MARGIN, MARGIN);		
+		goal.draw(g2d,  MARGIN, MARGIN, true);
+		goal.draw(g2d, MARGIN, MARGIN, false);
 	}
 }

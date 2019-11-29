@@ -13,13 +13,23 @@ public class Goal {
 		
 	}
 	
-	public void draw(Graphics2D g, int xOffset, int yOffset) {
-		int[][] points = {
+	public void draw(Graphics2D g, int xOffset, int yOffset, boolean isLeft) {
+		int[][] leftPoints = {
 				{Ice.BACKLINE_LENGTH + xOffset, Ice.WIDTH/2 + WIDTH/2 + yOffset},
 				{Ice.BACKLINE_LENGTH + xOffset - DEPTH, Ice.WIDTH/2 + WIDTH/2 + yOffset},
 				{Ice.BACKLINE_LENGTH + xOffset - DEPTH, Ice.WIDTH/2 - WIDTH/2 + yOffset},
 				{Ice.BACKLINE_LENGTH + xOffset, Ice.WIDTH/2 - WIDTH/2 + yOffset}
 		};
+		
+		int[][] rightPoints = {
+				{Ice.LENGTH - Ice.BACKLINE_LENGTH + xOffset, Ice.WIDTH/2 + WIDTH/2 + yOffset},
+				{Ice.LENGTH - Ice.BACKLINE_LENGTH + xOffset + DEPTH, Ice.WIDTH/2 + WIDTH/2 + yOffset},
+				{Ice.LENGTH - Ice.BACKLINE_LENGTH + xOffset + DEPTH, Ice.WIDTH/2 - WIDTH/2 + yOffset},
+				{Ice.LENGTH - Ice.BACKLINE_LENGTH + xOffset, Ice.WIDTH/2 - WIDTH/2 + yOffset}
+		};
+		
+		int[][] points = isLeft ? leftPoints : rightPoints;
+		
 		g.setColor(Color.BLACK);
 		g.setStroke(new BasicStroke(3));
 		g.drawLine(points[0][0], points[0][1], points[1][0], points[1][1]);
