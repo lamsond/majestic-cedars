@@ -37,13 +37,20 @@ public class Ice {
 		g.setStroke(new BasicStroke(3));
 		g.draw(new RoundRectangle2D.Double(xOffset, yOffset, LENGTH, WIDTH, RAD, RAD));
 		
-		drawFaceOff(g, (BACKLINE_LENGTH + (LENGTH-NEUTRAL_ZONE_LENGTH)/2)/2, 100, Color.RED);
+		int attackZoneX = (BACKLINE_LENGTH + (LENGTH/2 - NEUTRAL_ZONE_LENGTH/2))/2;
+		int attackZoneY = FACEOFF_RAD + 30;
+		drawFaceOff(g, attackZoneX + xOffset, attackZoneY + yOffset, Color.RED);
+		drawFaceOff(g, attackZoneX + xOffset, WIDTH-attackZoneY + yOffset, Color.RED);
+		drawFaceOff(g, LENGTH-attackZoneX + xOffset, WIDTH-attackZoneY + yOffset, Color.RED);
+		drawFaceOff(g, LENGTH-attackZoneX + xOffset, attackZoneY + yOffset, Color.RED);
+		drawFaceOff(g, LENGTH/2 + xOffset, WIDTH/2 + yOffset, Color.BLUE);
 	}
 	
 	private void drawFaceOff(Graphics2D g, int x, int y, Color c) {
 		g.setColor(c);
 		g.setStroke(new BasicStroke(2));
 		g.drawArc(x - FACEOFF_RAD, y - FACEOFF_RAD, FACEOFF_RAD*2, FACEOFF_RAD*2, 0, 360);
+		g.fillArc(x-SF, y-SF, SF*2, SF*2, 0, 360);
 	}
 	
 	
