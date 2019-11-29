@@ -14,10 +14,12 @@ public class HockeyPanel extends JPanel{
 	
 	private Ice ice;
 	private Goal goal;
+	private Puck puck;
 	
 	public HockeyPanel() {
 		ice = new Ice();
 		goal = new Goal();
+		puck = new Puck(MARGIN, MARGIN);
 		
 		setPreferredSize(new Dimension(LENGTH, WIDTH));
 		setBackground(Color.WHITE);
@@ -29,5 +31,6 @@ public class HockeyPanel extends JPanel{
 		ice.draw(g2d, MARGIN, MARGIN);
 		goal.draw(g2d,  MARGIN, MARGIN, true);
 		goal.draw(g2d, MARGIN, MARGIN, false);
+		puck.draw(g2d, Color.BLACK);
 	}
 }
