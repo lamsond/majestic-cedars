@@ -22,7 +22,7 @@ public class Ice {
 		
 	}
 	
-	public void drawIce(Graphics2D g, int xOffset, int yOffset) {
+	public void draw(Graphics2D g, int xOffset, int yOffset) {
 		g.setColor(Color.RED);
 		g.setStroke(new BasicStroke(2));
 		g.drawLine((int)(LENGTH/2) + xOffset, yOffset, (int)(LENGTH/2) + xOffset, WIDTH + yOffset);
