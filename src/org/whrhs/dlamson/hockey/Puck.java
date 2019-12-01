@@ -27,8 +27,13 @@ public class Puck {
 		if(x > Ice.LENGTH + HockeyPanel.MARGIN || x < 0 || y < 0 || y > Ice.WIDTH + HockeyPanel.MARGIN) {
 			x = Ice.LENGTH/2 + HockeyPanel.MARGIN;
 			y = Ice.WIDTH/2 + HockeyPanel.MARGIN;
-			vector[0] = Math.random();
-			vector[1] = Math.random();
+			randomUnitVector();
 		}
+	}
+	
+	private void randomUnitVector() {
+		double rad = 2*Math.PI*Math.random();
+		vector[0] = Math.cos(rad);
+		vector[1] = Math.sin(rad);
 	}
 }
