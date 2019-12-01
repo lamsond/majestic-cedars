@@ -24,7 +24,7 @@ public class Puck {
 	public void move() {
 		x += (int)(vector[0] * speed);
 		y += (int)(vector[1] * speed);
-		if(x > Ice.LENGTH + HockeyPanel.MARGIN || x < 0 || y < 0 || y > Ice.WIDTH + HockeyPanel.MARGIN) {
+		if(x > Ice.LENGTH + HockeyPanel.MARGIN || x < HockeyPanel.MARGIN || y < HockeyPanel.MARGIN || y > Ice.WIDTH + HockeyPanel.MARGIN) {
 			x = Ice.LENGTH/2 + HockeyPanel.MARGIN;
 			y = Ice.WIDTH/2 + HockeyPanel.MARGIN;
 			randomUnitVector();
