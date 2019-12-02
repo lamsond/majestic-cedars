@@ -13,7 +13,8 @@ public class Puck {
 		x = Ice.LENGTH/2 + xOffset;
 		y = Ice.WIDTH/2 + yOffset;
 		speed = 5;
-		vector = new double[]{1.0, 0.0};
+		vector = new double[2];
+		randomUnitVector();
 	}
 	
 	public void draw(Graphics2D g, Color c) {
@@ -24,11 +25,10 @@ public class Puck {
 	public void move() {
 		x += (int)(vector[0] * speed);
 		y += (int)(vector[1] * speed);
-		if(x > Ice.LENGTH + HockeyPanel.MARGIN || x < HockeyPanel.MARGIN || y < HockeyPanel.MARGIN || y > Ice.WIDTH + HockeyPanel.MARGIN) {
-			x = Ice.LENGTH/2 + HockeyPanel.MARGIN;
-			y = Ice.WIDTH/2 + HockeyPanel.MARGIN;
-			randomUnitVector();
-		}
+		if(x > Ice.LENGTH + HockeyPanel.MARGIN || x < HockeyPanel.MARGIN)
+			vector[0] *= -1;
+		if(y < HockeyPanel.MARGIN || y > Ice.WIDTH + HockeyPanel.MARGIN)
+			vector[1] *= -1;
 	}
 	
 	private void randomUnitVector() {
