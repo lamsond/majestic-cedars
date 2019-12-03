@@ -6,9 +6,6 @@ public class StudentTester {
 		
 		Student bob = new Student("Bob", 10, 123456);
 		
-		bob.setGpa(3.8);
-		bob.setGpa(-100.0);
-		System.out.println(bob.getGpa());
 	
 	}
 }
