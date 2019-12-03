@@ -21,7 +21,7 @@ public class CircularRinkPanel extends JPanel implements Runnable{
 	public CircularRinkPanel() {
 		setPreferredSize(new Dimension(DIM, DIM));
 		setBackground(Color.WHITE);
-		theta = 5;
+		theta = 30;
 		setUnitVector();
 		x = 100;
 		y = 100;
@@ -76,7 +76,7 @@ public class CircularRinkPanel extends JPanel implements Runnable{
 	}
 	
 	public void move() {
-		if(Math.pow((x-RAD+10), 2) + Math.pow((y-RAD+10), 2) >= RAD*RAD) {
+		if(Math.pow((x-RAD-10), 2) + Math.pow((y-RAD-10), 2) >= RAD*RAD) {
 			theta = 180 - theta;
 			setUnitVector();
 		}
