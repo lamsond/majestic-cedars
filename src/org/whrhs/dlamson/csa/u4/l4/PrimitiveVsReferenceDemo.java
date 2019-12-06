@@ -5,18 +5,16 @@ public class PrimitiveVsReferenceDemo {
 
 	public static void mystery(int n, Student s) {
 		n = 5;
-		s.setName("Bubba");
+		s.setName("Toni");
 	}
 	
 	public static void main(String[] args) {
-		Student jack = new Student("Jack", 123456);
+		// period 7 demo
 		int number = 13;
+		Student tony = new Student("T0ny", 1234343);
+		mystery(number, tony);
 		
 		System.out.println(number);
-		System.out.println(jack);
-		
-		mystery(number, jack);
-		System.out.println(number);
-		System.out.println(jack);
+		System.out.println(tony);
 	}
 }

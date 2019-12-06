@@ -66,7 +66,17 @@ public class Rectangle {
 	}
 	
 	public int findArea() {
-		return width*height;
+		return width * height;
+	}
+	
+	public boolean isSameArea(Rectangle other) {
+		return this.findArea() == other.findArea();
+	}
+	
+	public static void main(String[] args) {
+		Rectangle rect1 = new Rectangle(100, 20);
+		Rectangle rect2 = new Rectangle(200, 10);
+		System.out.println(rect1.isSameArea(rect2));
 	}
 	
 }

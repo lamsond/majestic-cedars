@@ -6,7 +6,7 @@ public class Student {
 	private static int numStudents = 0;
 	
 	private String name;
-	private double gpa;
+	public double gpa;
 	private int grade;
 	private int id;
 	
@@ -33,7 +33,8 @@ public class Student {
 	}
 	
 	public String toString() {
-		return name + ": ID#" + id;
+		// Jay Fu ID#1234567
+		return name + " ID:" + id;
 	}
 	
 }
