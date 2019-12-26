@@ -1,5 +1,11 @@
 package org.whrhs.dlamson.csa.u4.l3.lessons;
 
+/**
+ * Class represents a Student at WHRHS
+ * @author dlamson
+ * @version v1.0.0
+ *
+ */
 public class Student {
 	
 	public static final int MAX_STUDENTS = 30;
@@ -9,14 +15,24 @@ public class Student {
 	private int grade;
 	private int stdId;
 	
-	public Student(String n, int g, int id) {
-		name = n;
+	/**
+	 * 
+	 * @param n String representing student's name
+	 * @param g int representing student's grade
+	 * @param id student id number
+	 */
+	public Student(String name, int g, int id) {
+		this.name = name;
 		gpa = 0.0;
 		grade = g;
 		stdId = id;
 		numStudents++;
 	}
 	
+	/**
+	 * 
+	 * @return student's gpa
+	 */
 	public double getGpa() {
 		return gpa;
 	}
@@ -28,7 +44,6 @@ public class Student {
 		else
 			System.out.println(g + " is not a valid gpa");
 	}
-	
 	
 	
 }

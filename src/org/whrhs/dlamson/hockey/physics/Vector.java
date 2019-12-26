@@ -5,8 +5,8 @@ import java.awt.Graphics2D;
 public class Vector {
 	
 	public static final int SF = 10;
-	private double x, y;
-	
+	public double x, y;
+
 	public Vector(double x, double y) {
 		this.x = x;
 		this.y = y;
@@ -22,7 +22,7 @@ public class Vector {
 	}
 	
 	public static Vector unitNorm(double theta) {
-		Vector v = new Vector(Math.cos(theta), Math.sin(theta));
+		Vector v = new Vector(Math.cos(theta*2*Math.PI/180), Math.sin(theta*2*Math.PI/180));
 		return v;
 	}
 	

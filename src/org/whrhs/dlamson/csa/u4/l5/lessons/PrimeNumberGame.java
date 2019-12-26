@@ -1,4 +1,4 @@
-2package org.whrhs.dlamson.csa.u4.l5.lessons;
+package org.whrhs.dlamson.csa.u4.l5.lessons;
 
 import java.util.Scanner;
 

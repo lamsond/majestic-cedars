@@ -15,6 +15,7 @@ public class Student {
 		this.id = id;
 		grade = 9;
 		gpa = 0.0;
+		numStudents++;
 	}
 	
 	public void setGpa(double gpa) {
