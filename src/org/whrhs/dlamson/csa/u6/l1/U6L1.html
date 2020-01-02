@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+                 Alex Russell (slightlyoff@chromium.org)
+
+  landslide modifications: Adam Zapletal (adamzap@gmail.com)
+                           Nicolas Perriault (nperriault@gmail.com)
+-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>U6L1: Array Creation and Access</title>
+    <!-- Styles -->
+    
+    <link rel="stylesheet" media="print" href="file:///usr/local/lib/python3.5/dist-packages/landslide/themes/default/css/print.css">
+    <link rel="stylesheet" media="screen, projection" href="file:///usr/local/lib/python3.5/dist-packages/landslide/themes/default/css/screen.css">
+    
+    
+    <!-- /Styles -->
+    <!-- Javascripts -->
+    
+    <script type="text/javascript" src="file:///usr/local/lib/python3.5/dist-packages/landslide/themes/default/js/slides.js"></script>
+    
+    
+    
+    <!-- /Javascripts -->
+</head>
+<body>
+  <div id="blank"></div>
+  <div class="presentation">
+    <div id="current_presenter_notes">
+      <div id="presenter_note"></div>
+    </div>
+    <div class="slides">
+      
+      <!-- slide source: array-creation-notes.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-1">
+          <div class="inner">
+            
+            <header><h1>U6L1: Array Creation and Access</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="array-creation-notes.md">array-creation-notes.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              1/10
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: array-creation-notes.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-2">
+          <div class="inner">
+            
+            <header><h1>One Variable, Many Values</h1></header>
+            
+            
+            <section><p>We've all written code like this before:</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kt">int</span> <span class="n">score1</span><span class="o">;</span>
+<span class="lineno">2 </span><span class="kt">int</span> <span class="n">score2</span><span class="o">;</span>
+<span class="lineno">3 </span><span class="kt">int</span> <span class="n">score3</span><span class="o">;</span>
+</pre></div>
+
+<p>This can get tedious, and the only thing associating the related data are the identifiers chosen by the programmer. There is nothing internal to Java linking these values.   <br />
+Arrays allow us to organize related data into a single variable, for example:</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kt">int</span><span class="o">[]</span> <span class="n">scores</span><span class="o">;</span>
+</pre></div>
+
+<p>We are able to store as many scores as we need in this single variable.</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="array-creation-notes.md">array-creation-notes.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              2/10
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: array-creation-notes.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-3">
+          <div class="inner">
+            
+            <header><h1>Declaring an Array</h1></header>
+            
+            
+            <section><p>We declare an array in Java by adding square brackets <strong>[]</strong> after the data-type and assigning an identifier to the array. In the example below we declare an array of <code>int</code>s with the name <code>testScores</code></p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kt">int</span><span class="o">[]</span> <span class="n">testScores</span><span class="o">;</span>
+</pre></div>
+
+<p>Arrays can contain any Java data-type, as long as all the values are the same type. Arrays can contain primitives or reference values. </p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kt">double</span><span class="o">[]</span> <span class="n">heights</span><span class="o">;</span> <span class="c1">// primitive</span>
+<span class="lineno">2 </span><span class="n">String</span><span class="o">[]</span> <span class="n">names</span><span class="o">;</span> <span class="c1">// reference</span>
+<span class="lineno">3 </span><span class="n">Color</span><span class="o">[]</span> <span class="n">colors</span><span class="o">;</span> <span class="c1">// reference</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="array-creation-notes.md">array-creation-notes.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              3/10
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: array-creation-notes.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-4">
+          <div class="inner">
+            
+            <header><h1>Creating an Array</h1></header>
+            
+            
+            <section><p>Arrays in Java are fixed in size. They <em>cannot</em> grow and shrink like arrays in other languages. This means we must declare the size when an array is first created. To create an array we use the <code>new</code> keyword followed by the type with the size of the array enclosed in square brackets.</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kt">int</span><span class="o">[]</span> <span class="n">scores</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">3</span><span class="o">];</span>
+</pre></div>
+
+<p>When the program is run, the JVM will set aside memory to store three integer values. These values will default to <code>0</code> initially. </p>
+<h3>Default Values in Java Arrays</h3>
+<p><strong>numeric types:</strong> 0  <br />
+<strong>booleans:</strong> false<br />
+<strong>objects:</strong> null  </p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="array-creation-notes.md">array-creation-notes.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              4/10
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: array-creation-notes.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-5">
+          <div class="inner">
+            
+            <header><h1>Accessing values of an array</h1></header>
+            
+            
+            <section><p>The individual elements of an array can be accessed with square brackets and an <em>index</em> representing the position of the element in the array. The first element of an array is always index 0.</p>
+<div class="highlight"><pre><span></span><span class="lineno"> 1 </span><span class="c1">// declare new int array with 3 elements</span>
+<span class="lineno"> 2 </span><span class="kt">int</span><span class="o">[]</span> <span class="n">scores</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">3</span><span class="o">];</span>
+<span class="lineno"> 3 </span>
+<span class="lineno"> 4 </span><span class="c1">// assigns values to the scores array</span>
+<span class="lineno"> 5 </span><span class="n">scores</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">76</span><span class="o">;</span>
+<span class="lineno"> 6 </span><span class="n">scores</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span>
+<span class="lineno"> 7 </span><span class="n">scores</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="mi">83</span><span class="o">;</span>
+<span class="lineno"> 8 </span>
+<span class="lineno"> 9 </span><span class="c1">// print the first value</span>
+<span class="lineno">10 </span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">scores</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+<span class="lineno">11 </span>
+<span class="lineno">12 </span><span class="c1">// assign the second value to a new variable</span>
+<span class="lineno">13 </span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">scores</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="array-creation-notes.md">array-creation-notes.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              5/10
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: array-creation-notes.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-6">
+          <div class="inner">
+            
+            <header><h1>Valid index range</h1></header>
+            
+            
+            <section><p>An array may be indexed with an integer between 0 and 1 less than the length of the array. Any index outside of this range will result in a <code>ArrayIndexOutOfBoundsException</code>.</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">3</span><span class="o">];</span>
+<span class="lineno">2 </span><span class="n">arr</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span> <span class="c1">// sets first element to 10</span>
+<span class="lineno">3 </span><span class="n">arr</span><span class="o">[-</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span> <span class="c1">// will NOT compile (negative)</span>
+<span class="lineno">4 </span><span class="n">arr</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span> <span class="c1">// will NOT compile (greater than length - 1)</span>
+</pre></div>
+
+<p><strong>length attribute: </strong>every Java array comes with a built in <em>final</em> attribute called <em>length</em> that holds the amount of elements in the array. <em>NOTE: </em>This is not a method <code>.length()</code> like it is when we get the length of a String, it is an attribute. Therefore, we do not include parentheses.</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">10</span><span class="o">];</span>
+<span class="lineno">2 </span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">);</span> <span class="c1">// will print 10</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="array-creation-notes.md">array-creation-notes.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              6/10
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: array-creation-notes.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-7">
+          <div class="inner">
+            
+            <header><h1>Using an array initializer</h1></header>
+            
+            
+            <section><p>An <em>array initializer</em> is a shortcut for creating arrays in Java. Array initializers consist of curly brackets with comma separated values.</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kt">int</span><span class="o">[]</span> <span class="n">scores</span> <span class="o">=</span> <span class="o">{</span><span class="mi">76</span><span class="o">,</span> <span class="mi">100</span><span class="o">,</span> <span class="mi">83</span><span class="o">};</span>
+</pre></div>
+
+<p>This does the same thing as the code in the previous slide. Java infers the size of the array by the number of elements inside the brackets. It is interesting to note that <code>{76. 100, 83}</code> is used to create an integer array object however it is <strong>not</strong> an actual array itself (<em>Java does not have array literals</em>). This distinction is most noticable when using methods that take arrays as parameters, or return arrays. See example below:</p>
+<div class="highlight"><pre><span></span><span class="lineno"> 1 </span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ArrayDemo</span> <span class="o">{</span>
+<span class="lineno"> 2 </span>
+<span class="lineno"> 3 </span>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getFirst</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">){</span>
+<span class="lineno"> 4 </span>
+<span class="lineno"> 5 </span>        <span class="c1">// code in class</span>
+<span class="lineno"> 6 </span>
+<span class="lineno"> 7 </span>    <span class="o">}</span>
+<span class="lineno"> 8 </span>
+<span class="lineno"> 9 </span>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span><span class="o">[]</span> <span class="nf">randomTriplet</span><span class="o">()</span> <span class="o">{</span>
+<span class="lineno">10 </span>
+<span class="lineno">11 </span>        <span class="c1">// code in class</span>
+<span class="lineno">12 </span>    <span class="o">}</span>
+<span class="lineno">13 </span>
+<span class="lineno">14 </span>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+<span class="lineno">15 </span>
+<span class="lineno">16 </span>        <span class="c1">// code in class</span>
+<span class="lineno">17 </span>    <span class="o">}</span>
+<span class="lineno">18 </span><span class="o">}</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="array-creation-notes.md">array-creation-notes.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              7/10
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: array-creation-notes.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-8">
+          <div class="inner">
+            
+            <header><h1>Arrays are objects</h1></header>
+            
+            
+            <section><p>Arrays in Java are objects, even when the elements they contain are primitive. This can lead to some confusion if we forget that the array variable contains a reference value. Consider the following example:</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="n">String</span><span class="o">[]</span> <span class="n">names</span> <span class="o">=</span> <span class="o">{</span><span class="s">&quot;Shaggy&quot;</span><span class="o">,</span> <span class="s">&quot;Scooby&quot;</span><span class="o">,</span> <span class="s">&quot;Velma&quot;</span><span class="o">,</span> <span class="s">&quot;Daphne&quot;</span><span class="o">,</span> <span class="s">&quot;Fred&quot;</span><span class="o">};</span>
+</pre></div>
+
+<p>Suppose I want to make my own copy of the array doing the following:</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="n">String</span><span class="o">[]</span> <span class="n">myNames</span> <span class="o">=</span> <span class="n">names</span><span class="o">;</span>
+</pre></div>
+
+<p>Now if I want to replace the name "Scooby" with "Scrappy" I could write:</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="n">myNames</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="s">&quot;Scrappy&quot;</span><span class="o">;</span>
+</pre></div>
+
+<p>What do you think the following will print?</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">myNames</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>
+<span class="lineno">2 </span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">names</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="array-creation-notes.md">array-creation-notes.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              8/10
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: array-creation-notes.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-9">
+          <div class="inner">
+            
+            <header><h1>Using the .clone() method</h1></header>
+            
+            
+            <section><p>In the previous example, <code>names</code> and <code>myNames</code> were aliases to the same array. Changes to 1 affected the other. When we want to create a true copy of an array, we utilize the <code>.clone()</code> method.</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="n">String</span><span class="o">[]</span> <span class="n">names</span> <span class="o">=</span> <span class="o">{</span><span class="s">&quot;Shaggy&quot;</span><span class="o">,</span> <span class="s">&quot;Scooby&quot;</span><span class="o">,</span> <span class="s">&quot;Velma&quot;</span><span class="o">,</span> <span class="s">&quot;Daphne&quot;</span><span class="o">,</span> <span class="s">&quot;Fred&quot;</span><span class="o">};</span>
+<span class="lineno">2 </span>
+<span class="lineno">3 </span><span class="n">String</span><span class="o">[]</span> <span class="n">myNames</span> <span class="o">=</span> <span class="n">names</span><span class="o">.</span><span class="na">clone</span><span class="o">();</span>
+<span class="lineno">4 </span><span class="n">myNames</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="s">&quot;Scrappy&quot;</span><span class="o">;</span>
+<span class="lineno">5 </span>
+<span class="lineno">6 </span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">myNames</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>
+<span class="lineno">7 </span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">names</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="array-creation-notes.md">array-creation-notes.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              9/10
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: array-creation-notes.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-10">
+          <div class="inner">
+            
+            <header><h1>LAB 021</h1></header>
+            
+            
+            <section><p>Follow along in class creating the starter code for the <code>Student</code> class to this activity.<br />
+<em>Your Task:</em> Add the following instance methods</p>
+<p><strong>getGrade():</strong> Takes an integer representing the position in the <code>grades</code> array to return.<br />
+<strong>setGrade():</strong> Takes two integers. The first represents the position in the array to set and the second represents the grade to set to (no validation required).<br />
+<strong>improved():</strong> Will return whether or not the Student's last grade was greater than their first grade.<br />
+<strong>droppedMin():</strong> Will return a new array containing only 4 grades with the minimum grade dropped.  </p>
+<p><strong>Starter Code:</strong><br />
+// Complete in Class</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="array-creation-notes.md">array-creation-notes.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              10/10
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div id="toc" class="sidebar hidden">
+    <h2>Table of Contents</h2>
+    <table>
+      <caption>Table of Contents</caption>
+      
+      <tr id="toc-row-1">
+        <th><a href="#slide1">U6L1: Array Creation and Access</a></th>
+        <td><a href="#slide1">1</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-2">
+        <th><a href="#slide2">One Variable, Many Values</a></th>
+        <td><a href="#slide2">2</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-3">
+        <th><a href="#slide3">Declaring an Array</a></th>
+        <td><a href="#slide3">3</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-4">
+        <th><a href="#slide4">Creating an Array</a></th>
+        <td><a href="#slide4">4</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-5">
+        <th><a href="#slide5">Accessing values of an array</a></th>
+        <td><a href="#slide5">5</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-6">
+        <th><a href="#slide6">Valid index range</a></th>
+        <td><a href="#slide6">6</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-7">
+        <th><a href="#slide7">Using an array initializer</a></th>
+        <td><a href="#slide7">7</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-8">
+        <th><a href="#slide8">Arrays are objects</a></th>
+        <td><a href="#slide8">8</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-9">
+        <th><a href="#slide9">Using the .clone() method</a></th>
+        <td><a href="#slide9">9</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-10">
+        <th><a href="#slide10">LAB 021</a></th>
+        <td><a href="#slide10">10</a></td>
+      </tr>
+      
+      
+    </table>
+  </div>
+  
+  <div id="help" class="sidebar hidden">
+    <h2>Help</h2>
+    <table>
+      <caption>Help</caption>
+      <tr>
+        <th>Table of Contents</th>
+        <td>t</td>
+      </tr>
+      <tr>
+        <th>Exposé</th>
+        <td>ESC</td>
+      </tr>
+      <tr>
+        <th>Full screen slides</th>
+        <td>e</td>
+      </tr>
+      <tr>
+        <th>Presenter View</th>
+        <td>p</td>
+      </tr>
+      <tr>
+        <th>Source Files</th>
+        <td>s</td>
+      </tr>
+      <tr>
+        <th>Slide Numbers</th>
+        <td>n</td>
+      </tr>
+      <tr>
+        <th>Toggle screen blanking</th>
+        <td>b</td>
+      </tr>
+      <tr>
+        <th>Show/hide slide context</th>
+        <td>c</td>
+      </tr>
+      <tr>
+        <th>Notes</th>
+        <td>2</td>
+      </tr>
+      <tr>
+        <th>Help</th>
+        <td>h</td>
+      </tr>
+    </table>
+  </div>
+  <script>main()</script>
+</body>
+</html>
