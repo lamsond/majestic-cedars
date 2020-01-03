@@ -71,7 +71,7 @@
             </aside>
             
             <aside class="page_number">
-              1/10
+              1/12
             </aside>
           </footer>
         </div>
@@ -112,7 +112,7 @@ Arrays allow us to organize related data into a single variable, for example:</p
             </aside>
             
             <aside class="page_number">
-              2/10
+              2/12
             </aside>
           </footer>
         </div>
@@ -151,7 +151,7 @@ Arrays allow us to organize related data into a single variable, for example:</p
             </aside>
             
             <aside class="page_number">
-              3/10
+              3/12
             </aside>
           </footer>
         </div>
@@ -189,7 +189,7 @@ Arrays allow us to organize related data into a single variable, for example:</p
             </aside>
             
             <aside class="page_number">
-              4/10
+              4/12
             </aside>
           </footer>
         </div>
@@ -234,7 +234,7 @@ Arrays allow us to organize related data into a single variable, for example:</p
             </aside>
             
             <aside class="page_number">
-              5/10
+              5/12
             </aside>
           </footer>
         </div>
@@ -275,7 +275,7 @@ Arrays allow us to organize related data into a single variable, for example:</p
             </aside>
             
             <aside class="page_number">
-              6/10
+              6/12
             </aside>
           </footer>
         </div>
@@ -329,7 +329,7 @@ Arrays allow us to organize related data into a single variable, for example:</p
             </aside>
             
             <aside class="page_number">
-              7/10
+              7/12
             </aside>
           </footer>
         </div>
@@ -375,7 +375,7 @@ Arrays allow us to organize related data into a single variable, for example:</p
             </aside>
             
             <aside class="page_number">
-              8/10
+              8/12
             </aside>
           </footer>
         </div>
@@ -414,7 +414,7 @@ Arrays allow us to organize related data into a single variable, for example:</p
             </aside>
             
             <aside class="page_number">
-              9/10
+              9/12
             </aside>
           </footer>
         </div>
@@ -422,20 +422,27 @@ Arrays allow us to organize related data into a single variable, for example:</p
       
       <!-- slide source: array-creation-notes.md -->
       <div class="slide-wrapper">
-        <div class="slide slide-10">
+        <div class="slide has_code slide-10">
           <div class="inner">
             
-            <header><h1>LAB 021</h1></header>
+            <header><h1>LAB 022 Starter Code</h1></header>
             
             
-            <section><p>Follow along in class creating the starter code for the <code>Student</code> class to this activity.<br />
-<em>Your Task:</em> Add the following instance methods</p>
-<p><strong>getGrade():</strong> Takes an integer representing the position in the <code>grades</code> array to return.<br />
-<strong>setGrade():</strong> Takes two integers. The first represents the position in the array to set and the second represents the grade to set to (no validation required).<br />
-<strong>improved():</strong> Will return whether or not the Student's last grade was greater than their first grade.<br />
-<strong>droppedMin():</strong> Will return a new array containing only 4 grades with the minimum grade dropped.  </p>
-<p><strong>Starter Code:</strong><br />
-// Complete in Class</p></section>
+            <section><div class="highlight"><pre><span></span><span class="lineno"> 1 </span><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+<span class="lineno"> 2 </span>
+<span class="lineno"> 3 </span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Student</span><span class="o">{</span>
+<span class="lineno"> 4 </span>
+<span class="lineno"> 5 </span>    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">NUM_GRADES</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
+<span class="lineno"> 6 </span>    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+<span class="lineno"> 7 </span>    <span class="kd">private</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">grades</span><span class="o">;</span>
+<span class="lineno"> 8 </span>
+<span class="lineno"> 9 </span>    <span class="c1">// constructor</span>
+<span class="lineno">10 </span>
+<span class="lineno">11 </span>    <span class="c1">// methods</span>
+<span class="lineno">12 </span>
+<span class="lineno">13 </span><span class="o">}</span>
+</pre></div>
+</section>
             
           </div>
           <div class="presenter_notes">
@@ -451,7 +458,96 @@ Arrays allow us to organize related data into a single variable, for example:</p
             </aside>
             
             <aside class="page_number">
-              10/10
+              10/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: array-creation-notes.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-11">
+          <div class="inner">
+            
+            <header><h1>LAB-022 TODO: Student Class</h1></header>
+            
+            
+            <section><p>Create the following constructor and instance methods</p>
+<h3>Constructor</h3>
+<p><strong>Student(String name):</strong> takes a string used to set the <code>name</code> attribute. Initialize the <code>grades</code> array here. Use <code>NUM_GRADES</code> to set the size.</p>
+<h3>Instance Methods</h3>
+<p><strong>getGrade():</strong> Takes an integer representing the position in the <code>grades</code> array to return.<br />
+<strong>setGrade():</strong> Takes two integers. The first represents the position in the array to set and the second represents the value of the grade (no validation required).<br />
+<strong>improved():</strong> Return whether or not the Student's last grade was greater than their first grade.<br />
+<strong>getAverage():</strong> Return the average of the 5 grades in the array as a double.<br />
+<strong>droppedMin():</strong> Will return a new array of integers containing only 4 grades with the minimum grade dropped. <em>HINT:</em> This problem is easier if we sort the array. You may use the static method <code>Arrays.sort(arr)</code> where <code>arr</code> is the name of the array you are sorting. <strong>NOTE: </strong> DO NOT sort the <code>grades</code> array directly or our <code>improved()</code> method will be useless! Instead you must make a copy of the array first.  </p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="array-creation-notes.md">array-creation-notes.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              11/12
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: array-creation-notes.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-12">
+          <div class="inner">
+            
+            <header><h1>LAB-022 TODO: Test Code</h1></header>
+            
+            
+            <section><p>Write a separate test class to verify your methods.</p>
+<div class="highlight"><pre><span></span><span class="lineno"> 1 </span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StudentTest</span><span class="o">{</span>
+<span class="lineno"> 2 </span>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="lineno"> 3 </span>        <span class="c1">// create two students</span>
+<span class="lineno"> 4 </span>
+<span class="lineno"> 5 </span>        <span class="c1">// populate both students 5 grades using the setGrade() method</span>
+<span class="lineno"> 6 </span>        <span class="c1">// make sure 1 student &quot;improves&quot; and 1 does not</span>
+<span class="lineno"> 7 </span>        <span class="c1">// make sure 1 student has two min grades</span>
+<span class="lineno"> 8 </span>
+<span class="lineno"> 9 </span>        <span class="c1">// test your getter by calling the getGrade() method at least once</span>
+<span class="lineno">10 </span>
+<span class="lineno">11 </span>        <span class="c1">// test your improved() method by calling it on each student</span>
+<span class="lineno">12 </span>
+<span class="lineno">13 </span>        <span class="c1">// test your getAverage() method by calling it on each student</span>
+<span class="lineno">14 </span>
+<span class="lineno">15 </span>        <span class="c1">// test your droppedMin() by calling it on each student and printing the array</span>
+<span class="lineno">16 </span>        <span class="c1">// feel free to use Arrays.toString(arr) to print.</span>
+<span class="lineno">17 </span>
+<span class="lineno">18 </span>    <span class="o">}</span>
+<span class="lineno">19 </span><span class="o">}</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="array-creation-notes.md">array-creation-notes.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              12/12
             </aside>
           </footer>
         </div>
@@ -520,8 +616,20 @@ Arrays allow us to organize related data into a single variable, for example:</p
       
       
       <tr id="toc-row-10">
-        <th><a href="#slide10">LAB 021</a></th>
+        <th><a href="#slide10">LAB 022 Starter Code</a></th>
         <td><a href="#slide10">10</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-11">
+        <th><a href="#slide11">LAB-022 TODO: Student Class</a></th>
+        <td><a href="#slide11">11</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-12">
+        <th><a href="#slide12">LAB-022 TODO: Test Code</a></th>
+        <td><a href="#slide12">12</a></td>
       </tr>
       
       

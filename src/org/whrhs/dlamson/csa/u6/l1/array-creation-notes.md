@@ -154,15 +154,57 @@ In the previous example, `names` and `myNames` were aliases to the same array. C
 	System.out.println(names[1]);
 
 ---
-# LAB 021
+# LAB 022 Starter Code
 
-Follow along in class creating the starter code for the `Student` class to this activity.  
-*Your Task:* Add the following instance methods
+	!Java
+	import java.util.Arrays;
+	
+	public class Student{
+	
+	    public static final int NUM_GRADES = 5;
+	    private String name;
+	    private int[] grades;
+	    
+	    // constructor
+	    
+		// methods
+		
+	}
 
+---
+#LAB-022 TODO: Student Class
+Create the following constructor and instance methods
+###Constructor
+**Student(String name):** takes a string used to set the `name` attribute. Initialize the `grades` array here. Use `NUM_GRADES` to set the size.
+
+###Instance Methods
 **getGrade():** Takes an integer representing the position in the `grades` array to return.  
-**setGrade():** Takes two integers. The first represents the position in the array to set and the second represents the grade to set to (no validation required).  
-**improved():** Will return whether or not the Student's last grade was greater than their first grade.  
-**droppedMin():** Will return a new array containing only 4 grades with the minimum grade dropped.  
+**setGrade():** Takes two integers. The first represents the position in the array to set and the second represents the value of the grade (no validation required).  
+**improved():** Return whether or not the Student's last grade was greater than their first grade.  
+**getAverage():** Return the average of the 5 grades in the array as a double.  
+**droppedMin():** Will return a new array of integers containing only 4 grades with the minimum grade dropped. *HINT:* This problem is easier if we sort the array. You may use the static method `Arrays.sort(arr)` where `arr` is the name of the array you are sorting. **NOTE: ** DO NOT sort the `grades` array directly or our `improved()` method will be useless! Instead you must make a copy of the array first.  
+---
+#LAB-022 TODO: Test Code
+Write a separate test class to verify your methods.
 
-**Starter Code:**  
-// Complete in Class
+	!Java
+	public class StudentTest{
+		public static void main(String[] args){
+			// create two students
+			
+			// populate both students 5 grades using the setGrade() method
+			// make sure 1 student "improves" and 1 does not
+			// make sure 1 student has two min grades
+			
+			// test your getter by calling the getGrade() method at least once
+			
+			// test your improved() method by calling it on each student
+			
+			// test your getAverage() method by calling it on each student
+			
+			// test your droppedMin() by calling it on each student and printing the array
+			// feel free to use Arrays.toString(arr) to print.
+			 
+		}
+	}
+

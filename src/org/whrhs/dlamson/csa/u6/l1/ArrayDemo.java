@@ -1,5 +1,7 @@
 package org.whrhs.dlamson.csa.u6.l1;
 
+import java.util.Arrays;
+
 public class ArrayDemo {
 	
 	
@@ -8,10 +10,9 @@ public class ArrayDemo {
 		String[] names = {"Shaggy", "Scooby", "Velma", "Daphne", "Fred"};
 		String[] myNames = names.clone();
 		
-		myNames[1] = "Scrappy";
-		
-		System.out.println(myNames[1]); // prints Scrappy
-		System.out.println(names[1]); // ?
+		Arrays.sort(names);
+		int[] nums = {1, 2, 3, 4};
+		System.out.println(Arrays.toString(nums));
 		
 	}
 }
