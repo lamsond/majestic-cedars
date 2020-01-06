@@ -15,7 +15,7 @@ public class PrimeNumberGame {
 	}
 	
 	public static boolean isPrime() {
-		
+		return true;
 	}
 	
 	
