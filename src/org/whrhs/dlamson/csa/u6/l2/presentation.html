@@ -71,7 +71,7 @@
             </aside>
             
             <aside class="page_number">
-              1/6
+              1/8
             </aside>
           </footer>
         </div>
@@ -135,7 +135,7 @@ For example, if we were given the following array of Scooby Doo characters  </p>
             </aside>
             
             <aside class="page_number">
-              2/6
+              2/8
             </aside>
           </footer>
         </div>
@@ -149,8 +149,8 @@ For example, if we were given the following array of Scooby Doo characters  </p>
             <header><h1>Off By One Errors</h1></header>
             
             
-            <section><p>Can you find the error in the following code?</p>
-<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">names</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">--){</span>
+            <section><p>The most common errors when traversing arrays are "off by one" types. The following loop is supposed to print all names in reverse order. Can you find the error in the following code?</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">names</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">--){</span>
 <span class="lineno">2 </span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">names</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
 </pre></div>
 </section>
@@ -169,7 +169,7 @@ For example, if we were given the following array of Scooby Doo characters  </p>
             </aside>
             
             <aside class="page_number">
-              3/6
+              3/8
             </aside>
           </footer>
         </div>
@@ -180,14 +180,72 @@ For example, if we were given the following array of Scooby Doo characters  </p>
         <div class="slide has_code slide-4">
           <div class="inner">
             
-            <header><h1>Enhanced For Loops</h1></header>
+            <header><h1>For Each Loops</h1></header>
             
             
-            <section><p>Enahnced for loops were added in Java 7. They result in a more readable for loop that can be used with any Java <em>collection</em> such as <em>Array</em> and <em>ArrayList</em> objects.  </p>
+            <section><p>Also called <em>enahnced for loops</em> were added to Java in version 5. They result is a more readable for loop that can be used with any Java <em>collection</em> such as <em>Array</em> and <em>ArrayList</em> objects.  </p>
+<p>To use a for each loop, we must use the following header syntax:</p>
+<p><code>for(arrayType varName: arrayName)</code>  </p>
+<p><strong>arrayType</strong> is the data type held in the array.<br />
+<strong>varName</strong> is the name of a temporary variable that will hold the current element of an array.<br />
+<strong>arrayName</strong> is the variable name of the array.  </p>
 <p>Our Scooby Doo example can now be rewritten as:  </p>
 <div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="k">for</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">:</span> <span class="n">names</span><span class="o">){</span>
 <span class="lineno">2 </span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
 <span class="lineno">3 </span><span class="o">}</span>
+</pre></div>
+
+<p><strong>Advantages</strong> of the <em>for each</em> loop<br />
+readability<br />
+eliminates the chance of <em>off by one</em> errors<br />
+programmer does not need to be concerned with <em>indexing</em>.  </p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="traversing-array-notes.md">traversing-array-notes.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              4/8
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: traversing-array-notes.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-5">
+          <div class="inner">
+            
+            <header><h1>For each loops can't modify an array.</h1></header>
+            
+            
+            <section><p>Suppose I have a <code>grades</code> array that has been populated as shown below</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kt">int</span><span class="o">[]</span> <span class="n">grades</span> <span class="o">=</span> <span class="o">{</span><span class="mi">77</span><span class="o">,</span> <span class="mi">92</span><span class="o">,</span> <span class="mi">88</span><span class="o">,</span> <span class="mi">95</span><span class="o">,</span> <span class="mi">100</span><span class="o">};</span>
+</pre></div>
+
+<p>I want to design a method that takes an integer array such as <code>grades</code> and resets all the values to zero. The following method would do this:</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">resetGrades</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">grades</span><span class="o">){</span>
+<span class="lineno">2 </span>    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">grades</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+<span class="lineno">3 </span>        <span class="n">grades</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="lineno">4 </span>    <span class="o">}</span>
+<span class="lineno">5 </span><span class="o">}</span>
+</pre></div>
+
+<p>However, the for-each version would not. This is because <code>grade</code> is a local copy of the primitive value <code>grades[i]</code>. We must use a traditional for loop if we want to modify the array.</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">resetGrades</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">grades</span><span class="o">){</span>
+<span class="lineno">2 </span>    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">grade</span><span class="o">:</span> <span class="n">grades</span><span class="o">){</span>
+<span class="lineno">3 </span>        <span class="n">grade</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="lineno">4 </span>    <span class="o">}</span>
+<span class="lineno">5 </span><span class="o">}</span>
 </pre></div>
 </section>
             
@@ -205,7 +263,7 @@ For example, if we were given the following array of Scooby Doo characters  </p>
             </aside>
             
             <aside class="page_number">
-              4/6
+              5/8
             </aside>
           </footer>
         </div>
@@ -213,13 +271,29 @@ For example, if we were given the following array of Scooby Doo characters  </p>
       
       <!-- slide source: traversing-array-notes.md -->
       <div class="slide-wrapper">
-        <div class="slide slide-5">
+        <div class="slide has_code slide-6">
           <div class="inner">
             
-            <header><h1>For Each Loops cannot Mutate an Array.</h1></header>
+            <header><h1>LAB 023 Starter Code</h1></header>
             
             
-            <section><p>Consider the following:  </p></section>
+            <section><div class="highlight"><pre><span></span><span class="lineno"> 1 </span><span class="c1">// write this in the same project as Student.java from LAB-022</span>
+<span class="lineno"> 2 </span><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+<span class="lineno"> 3 </span>
+<span class="lineno"> 4 </span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Course</span><span class="o">{</span>
+<span class="lineno"> 5 </span>
+<span class="lineno"> 6 </span>    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">MAX_STUDENTS</span> <span class="o">=</span> <span class="mi">30</span><span class="o">;</span>
+<span class="lineno"> 7 </span>    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+<span class="lineno"> 8 </span>    <span class="kd">private</span> <span class="n">numStudents</span><span class="o">;</span>
+<span class="lineno"> 9 </span>    <span class="kd">private</span> <span class="n">Student</span><span class="o">[]</span> <span class="n">students</span><span class="o">;</span>
+<span class="lineno">10 </span>
+<span class="lineno">11 </span>    <span class="c1">// constructor</span>
+<span class="lineno">12 </span>
+<span class="lineno">13 </span>    <span class="c1">// methods</span>
+<span class="lineno">14 </span>
+<span class="lineno">15 </span><span class="o">}</span>
+</pre></div>
+</section>
             
           </div>
           <div class="presenter_notes">
@@ -235,7 +309,7 @@ For example, if we were given the following array of Scooby Doo characters  </p>
             </aside>
             
             <aside class="page_number">
-              5/6
+              6/8
             </aside>
           </footer>
         </div>
@@ -243,13 +317,21 @@ For example, if we were given the following array of Scooby Doo characters  </p>
       
       <!-- slide source: traversing-array-notes.md -->
       <div class="slide-wrapper">
-        <div class="slide slide-6">
+        <div class="slide slide-7">
           <div class="inner">
             
-            <header><h1>LAB-023</h1></header>
+            <header><h1>LAB-023 TODO: Student Class</h1></header>
             
             
-            <section><p>Write a class named Team</p></section>
+            <section><p>Create the following constructor and instance methods</p>
+<h3>Constructor</h3>
+<p><strong>Course(String name):</strong> takes a string used to set the <code>name</code> attribute. Initialize the <code>students</code> array here. Use <code>MAX_STUDENTS</code> to set the size. Set <code>numStudents</code> to zero.</p>
+<h3>Instance Methods</h3>
+<p><strong>addStudent():</strong> Takes a Student object and adds the student to <code>students</code> array <strong>only if</strong> there is room for the student in the class. Increment the <code>numStudents</code> variable.<br />
+<strong>getNumImproved():</strong> Traverses the <code>students</code> array and returns the number of students in the course that have improved.<br />
+<strong>getMaxAverage():</strong> Traverses the array of Students and returns the maximum average grade in the course.<br />
+<strong>getMinAverage():</strong> Traverses the array of Students and returns the minimum average grade in the course.<br />
+<strong>printRoster():</strong> Prints the roster of a course as example shown on next slide. Include numbers, names, and averages. Use the <code>for-each</code> type for this.</p></section>
             
           </div>
           <div class="presenter_notes">
@@ -265,7 +347,45 @@ For example, if we were given the following array of Scooby Doo characters  </p>
             </aside>
             
             <aside class="page_number">
-              6/6
+              7/8
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: traversing-array-notes.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-8">
+          <div class="inner">
+            
+            <header><h1>Output of printRoster() method</h1></header>
+            
+            
+            <section><p>Roster for AP Computer Science A<br />
+1. Shaggy 71.0<br />
+2. Scooby 100.0<br />
+3. Velma 99.8<br />
+4. Daphne 92.4<br />
+5. Fred 81.5  </p>
+<ul>
+<li>make your own test code, but you don't need to submit it.</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="traversing-array-notes.md">traversing-array-notes.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              8/8
             </aside>
           </footer>
         </div>
@@ -298,20 +418,32 @@ For example, if we were given the following array of Scooby Doo characters  </p>
       
       
       <tr id="toc-row-4">
-        <th><a href="#slide4">Enhanced For Loops</a></th>
+        <th><a href="#slide4">For Each Loops</a></th>
         <td><a href="#slide4">4</a></td>
       </tr>
       
       
       <tr id="toc-row-5">
-        <th><a href="#slide5">For Each Loops cannot Mutate an Array.</a></th>
+        <th><a href="#slide5">For each loops can't modify an array.</a></th>
         <td><a href="#slide5">5</a></td>
       </tr>
       
       
       <tr id="toc-row-6">
-        <th><a href="#slide6">LAB-023</a></th>
+        <th><a href="#slide6">LAB 023 Starter Code</a></th>
         <td><a href="#slide6">6</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-7">
+        <th><a href="#slide7">LAB-023 TODO: Student Class</a></th>
+        <td><a href="#slide7">7</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-8">
+        <th><a href="#slide8">Output of printRoster() method</a></th>
+        <td><a href="#slide8">8</a></td>
       </tr>
       
       
