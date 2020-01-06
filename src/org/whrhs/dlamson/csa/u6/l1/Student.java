@@ -40,4 +40,36 @@ public class Student {
 		
 		return droppedArr;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static void main(String[] args) {
+		
+		int[] nums = {34, 21, 13, 8, 5, 3, 2, 1, 1};
+		
+		Arrays.sort(nums);
+		System.out.println(Arrays.toString(nums));
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
 }
