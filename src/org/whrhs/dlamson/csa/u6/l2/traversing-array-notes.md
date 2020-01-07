@@ -33,11 +33,12 @@ The most common errors when traversing arrays are "off by one" types. The follow
 	!Java
 	for(int i = names.length; i >= 0; i--){
 		System.out.println(names[i]);
+	}
 		
 ---
 # For Each Loops
 
-Also called *enahnced for loops* were added to Java in version 5. They result is a more readable for loop that can be used with any Java *collection* such as *Array* and *ArrayList* objects.  
+Also called *enhanced for loops* were added to Java in version 5. They result in a more readable for loop that can be used with any Java *collection* such as *Array* and *ArrayList* objects.  
 
 To use a for each loop, we must use the following header syntax:
 
@@ -117,7 +118,8 @@ Create the following constructor and instance methods
 **getNumImproved():** Traverses the `students` array and returns the number of students in the course that have improved.  
 **getMaxAverage():** Traverses the array of Students and returns the maximum average grade in the course.  
 **getMinAverage():** Traverses the array of Students and returns the minimum average grade in the course.  
-**printRoster():** Prints the roster of a course as example shown on next slide. Include numbers, names, and averages. Use the `for-each` type for this.
+**printRoster():** Prints the roster of a course as shown on the next slide. Include numbers, names, and averages. Use the `for-each` type for this. (You will need to add a `getName()` method to Student class if you haven't already.)  
+**NOTE: ** If your array is not full, you will get an error when trying to print a `null` student. To prevent this, add the conditional `if(student != null)` before printing.
 
 ---
 # Output of printRoster() method
