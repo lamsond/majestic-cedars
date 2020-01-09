@@ -19,14 +19,15 @@ public class ArrayLoopsDemo {
 	public static void main(String[] args) {
 		
 		String[] names = {"Shaggy", "Scooby", "Velma", "Daphne", "Fred"};
+		
 		int[] grades = {77, 92, 88, 95, 100};
 		
-		int total = 0;
-		for(int i = 0; i < grades.length; i++) {
-			total += grades[i];
-		}
+		resetForEachLoop(grades);
 		
-		System.out.println(total);
+		System.out.println(Arrays.toString(grades));
+		
+		
+		
 		
 		
 		

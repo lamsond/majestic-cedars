@@ -98,7 +98,7 @@ However, the for-each version would not. This is because `grade` is a local copy
 	
 	    public static final int MAX_STUDENTS = 30;
 	    private String name;
-	    private numStudents;
+	    private int numStudents;
 	    private Student[] students;
 	    
 	    // constructor
@@ -108,7 +108,7 @@ However, the for-each version would not. This is because `grade` is a local copy
 	}
 
 ---
-#LAB-023 TODO: Student Class
+#LAB-023 TODO: Course Class
 Create the following constructor and instance methods
 ###Constructor
 **Course(String name):** takes a string used to set the `name` attribute. Initialize the `students` array here. Use `MAX_STUDENTS` to set the size. Set `numStudents` to zero.
