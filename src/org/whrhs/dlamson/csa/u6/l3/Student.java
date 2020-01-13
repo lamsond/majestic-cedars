@@ -1,4 +1,4 @@
-package org.whrhs.dlamson.csa.u6.l2;
+package org.whrhs.dlamson.csa.u6.l3;
 
 public class Student {
 
