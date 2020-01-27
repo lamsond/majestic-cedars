@@ -6,7 +6,7 @@ public class TestChecker {
 		
 		int[] nums = {1, 34, 54, 2, 3};
 		
-		// can't clone directly to double	
+		// can't clone directly to double yes i can
 		
 	}
 }
