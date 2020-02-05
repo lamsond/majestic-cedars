@@ -1,6 +1,7 @@
 package org.whrhs.dlamson.csa.u7.l4;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 
 public class Card {
 	
@@ -16,7 +17,7 @@ public class Card {
 		color = suite == '\u2660' || suite == '\u2665' ? Color.BLACK: Color.red;
 	}
 	
-	public void renderCard() {
+	public void renderCard(Graphics2D g) {
 		
 	}
 
