@@ -71,7 +71,7 @@
             </aside>
             
             <aside class="page_number">
-              1/9
+              1/10
             </aside>
           </footer>
         </div>
@@ -105,7 +105,7 @@
             </aside>
             
             <aside class="page_number">
-              2/9
+              2/10
             </aside>
           </footer>
         </div>
@@ -141,7 +141,7 @@
 <td>Increases linearly (e.g. Linear Search)</td>
 </tr>
 <tr>
-<td>O(nlog(n))</td>
+<td>O(n*log(n))</td>
 <td>Increases with n, faster than linear (e.g. <code>Arrays.sort()</code>)</td>
 </tr>
 <tr>
@@ -170,7 +170,7 @@
             </aside>
             
             <aside class="page_number">
-              3/9
+              3/10
             </aside>
           </footer>
         </div>
@@ -187,9 +187,10 @@
             <section><ol>
 <li>Selection Sort (<code>O(n^2)</code>) - Today</li>
 <li>Insertion Sort (<code>O(n^2)</code>) - Today</li>
-<li>Merge Sort (<code>O(nlog(n))</code>) - Chapter 10 (Recursion)</li>
+<li>Merge Sort (<code>O(n*log(n))</code>) - Chapter 10 (Recursion)</li>
 </ol>
-<p><strong>note: </strong>the <code>n^2</code> runtime comes from the fact that selection/insertion rely on <em>double loops</em>, resulting in having to iterate through n things n times.  </p></section>
+<p><strong>note: </strong>the <code>n^2</code> runtime comes from the fact that selection/insertion rely on <em>double loops</em>, resulting in having to iterate through n things n times.  </p>
+<p><img alt="big oh graphs" src="https://cooervo.github.io/Algorithms-DataStructures-BigONotation/images/graphs/comparison.svg" /></p></section>
             
           </div>
           <div class="presenter_notes">
@@ -205,7 +206,7 @@
             </aside>
             
             <aside class="page_number">
-              4/9
+              4/10
             </aside>
           </footer>
         </div>
@@ -243,7 +244,7 @@
             </aside>
             
             <aside class="page_number">
-              5/9
+              5/10
             </aside>
           </footer>
         </div>
@@ -271,7 +272,7 @@
             </aside>
             
             <aside class="page_number">
-              6/9
+              6/10
             </aside>
           </footer>
         </div>
@@ -307,7 +308,7 @@
             </aside>
             
             <aside class="page_number">
-              7/9
+              7/10
             </aside>
           </footer>
         </div>
@@ -335,7 +336,7 @@
             </aside>
             
             <aside class="page_number">
-              8/9
+              8/10
             </aside>
           </footer>
         </div>
@@ -349,18 +350,19 @@
             <header><h1>LAB-027</h1></header>
             
             
-            <section><p>Try to implement these to algorithms with the following <code>static void</code> methods</p>
+            <section><p>Implement these to algorithms with the following <code>static void</code> methods</p>
 <ol>
 <li><code>selectionSort()</code>: takes an ArrayList of names and puts them into alphabetical order using the selection sort algorithm. (see <code>compareTo()</code> if stuck on how to order)</li>
 <li><code>insertionSort()</code>: takes an ArrayList of names and puts them into alphabetical order using the insertion sort algorithm.</li>
-<li>
-<p><code>shuffle()</code>: takes an ArrayList of names and puts them into a random order. (see <code>Knuth shuffle</code> if stuck)</p>
-</li>
-<li>
-<p>In <code>main()</code> create an ArrayList of 10 names.</p>
-</li>
-<li>Test your sort algorithms at least 3 times shuffling in between each time.</li>
-</ol></section>
+<li><code>shuffle()</code>: takes an ArrayList of names and puts them into a random order. (see <code>Knuth shuffle</code> if you get stuck)</li>
+</ol>
+<p><strong>Notes: </strong>  </p>
+<ul>
+<li>Use the starter/test code posted to Classroom to get started  </li>
+<li>Try to code these algorithms on your own before resorting to Google. It's worth the effort.  </li>
+<li>Google the <code>compareTo()</code> method to review how to put Strings in order.  </li>
+<li>Your shuffle code needs to randomize the order, but doesn't have to be <em>mathematically perfect</em> (every permutation is equally likely)  </li>
+</ul></section>
             
           </div>
           <div class="presenter_notes">
@@ -376,7 +378,38 @@
             </aside>
             
             <aside class="page_number">
-              9/9
+              9/10
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: sorting-notes.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-10">
+          <div class="inner">
+            
+            <header><h1>Sample Output</h1></header>
+            
+            
+            <section><p>When your code is working you should get something like this: <br />
+<img alt="console screenshot" src="/home/conrad/Pictures/sampleOutput.png" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="sorting-notes.md">sorting-notes.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              10/10
             </aside>
           </footer>
         </div>
@@ -441,6 +474,12 @@
       <tr id="toc-row-9">
         <th><a href="#slide9">LAB-027</a></th>
         <td><a href="#slide9">9</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-10">
+        <th><a href="#slide10">Sample Output</a></th>
+        <td><a href="#slide10">10</a></td>
       </tr>
       
       
