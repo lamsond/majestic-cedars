@@ -3,9 +3,9 @@
 
 # Lab Recap
 
-During the Runtime Lab we should have found:
+During the Runtime Lab we should have discovered:
 
-1. Binary Search is considerably faster than Linear Search (especially as the size of our arrays increases).
+1. Binary Search is considerably faster than Linear Search (especially as the size of our array increases).
 2. The time it takes to sort however, is much longer than Linear Search. This makes Linear Search more efficient than Binary Search if we are only searching an array one time.
 
 ---
@@ -28,8 +28,10 @@ O(2^n) | Increases exponentially
 # Sort Algorithms for the AP Exam
 
 1. Selection Sort (`O(n^2)`) - Today
-2. Insertion Sort (`O*n^2)`) - Today
+2. Insertion Sort (`O(n^2)`) - Today
 3. Merge Sort (`O(nlog(n))`) - Chapter 10 (Recursion)
+
+**note: **the `n^2` runtime comes from the fact that selection/insertion rely on *double loops*, resulting in having to iterate through n things n times.  
 
 ---
 # Selection Sort Pseudo-code
@@ -53,7 +55,7 @@ O(2^n) | Increases exponentially
 
 	!Java
 	for each position in the array (start @ index 1)
-		insert the current value into order relative to the values on its left.
+		insert the current value into order relative to the sorted values on its left.
 		move to the next position in the array.
 
 **Simulation**  
