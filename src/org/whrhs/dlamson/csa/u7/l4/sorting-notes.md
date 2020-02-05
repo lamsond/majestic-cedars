@@ -18,7 +18,7 @@ Efficiency | Meaning
 O(1) | Takes a constant amount of time regardless of the size of n.
 O(log(n)) | Time increases with n, however more slowly than linear (e.g. Binary Search)
 O(n) | Increases linearly (e.g. Linear Search)
-O(nlog(n)) | Increases with n, faster than linear (e.g. `Arrays.sort()`)
+O(n*log(n)) | Increases with n, faster than linear (e.g. `Arrays.sort()`)
 O(n^2) | Increases to the square of n. (e.g. Insertion Sort, Selection Sort)
 O(2^n) | Increases exponentially
 
@@ -29,9 +29,11 @@ O(2^n) | Increases exponentially
 
 1. Selection Sort (`O(n^2)`) - Today
 2. Insertion Sort (`O(n^2)`) - Today
-3. Merge Sort (`O(nlog(n))`) - Chapter 10 (Recursion)
+3. Merge Sort (`O(n*log(n))`) - Chapter 10 (Recursion)
 
 **note: **the `n^2` runtime comes from the fact that selection/insertion rely on *double loops*, resulting in having to iterate through n things n times.  
+
+![big oh graphs](https://cooervo.github.io/Algorithms-DataStructures-BigONotation/images/graphs/comparison.svg)
 
 ---
 # Selection Sort Pseudo-code
@@ -67,11 +69,20 @@ O(2^n) | Increases exponentially
 
 # LAB-027
 
-Try to implement these to algorithms with the following `static void` methods
+Implement these to algorithms with the following `static void` methods
 
 1. `selectionSort()`: takes an ArrayList of names and puts them into alphabetical order using the selection sort algorithm. (see `compareTo()` if stuck on how to order)
 2. `insertionSort()`: takes an ArrayList of names and puts them into alphabetical order using the insertion sort algorithm.
-3. `shuffle()`: takes an ArrayList of names and puts them into a random order. (see `Knuth shuffle` if stuck)
+3. `shuffle()`: takes an ArrayList of names and puts them into a random order. (see `Knuth shuffle` if you get stuck)
 
-* In `main()` create an ArrayList of 10 names.
-* Test your sort algorithms at least 3 times shuffling in between each time.
+**Notes: **  
+
+* Use the starter/test code posted to Classroom to get started  
+* Try to code these algorithms on your own before resorting to Google. It's worth the effort.  
+* Google the `compareTo()` method to review how to put Strings in order.  
+* Your shuffle code needs to randomize the order, but doesn't have to be *mathematically perfect* (every permutation is equally likely)  
+  
+---
+# Sample Output
+When your code is working you should get something like this:   
+![console screenshot](/home/conrad/Pictures/sampleOutput.png)
