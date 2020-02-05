@@ -2,48 +2,21 @@ package org.whrhs.dlamson.csa.u7.l4;
 
 import java.util.ArrayList;
 
-public class SortAlgs {
+public class TestStarterCode {
 
 	public static void selectionSort(ArrayList<String> list) {
-		for(int i = 0; i < list.size(); i++) {
-			int minIndex = i;
-			for(int j = i + 1; j < list.size(); j++) {
-				if(list.get(j).compareTo(list.get(minIndex)) < 0) {
-					minIndex = j;
-				}
-			}
-			if(minIndex != i) {
-				String temp = list.get(i);
-				list.set(i, list.get(minIndex));
-				list.set(minIndex, temp);
-			}
-		}
+
+		
 	}
 	
 	public static void insertionSort(ArrayList<String> list) {
-		for(int i = 1; i < list.size(); i++) {
-			int insertIndex = i;
-			while(insertIndex > 0 && list.get(i).compareTo(list.get(insertIndex-1)) < 0) {
-				insertIndex--;
-			}
-			if(insertIndex < i) {
-				String temp = list.get(i);
-				for(int j = i; j > insertIndex; j--) {
-					list.set(j, list.get(j-1));
-				}
-				list.set(insertIndex, temp);
-			}
-			
-		}		
+
+		
 	}
 	
 	public static void shuffle(ArrayList<String> list) {
-		for(int i = 0; i < list.size(); i++) {
-			int r = i + (int)(Math.random() * list.size() - i);
-			String temp = list.get(i);
-			list.set(i, list.get(r));
-			list.set(r,  temp);
-		}
+
+		
 	}
 	
 	public static void printList(String[] list) {
