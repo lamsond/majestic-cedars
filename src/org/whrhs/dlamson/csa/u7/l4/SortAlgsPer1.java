@@ -2,7 +2,7 @@ package org.whrhs.dlamson.csa.u7.l4;
 
 import java.util.ArrayList;
 
-public class SortAlgs {
+public class SortAlgsPer1 {
 
 	public static void selectionSort(ArrayList<String> list) {
 		for(int i = 0; i < list.size(); i++) {
@@ -27,8 +27,11 @@ public class SortAlgs {
 				insertIndex--;
 			}
 			if(insertIndex < i) {
-				String temp = list.remove(i);
-				list.add(insertIndex, temp);
+				String temp = list.get(i);
+				for(int j = i; j > insertIndex; j--) {
+					list.set(j, list.get(j-1));
+				}
+				list.set(insertIndex, temp);
 			}
 			
 		}		
@@ -57,27 +60,22 @@ public class SortAlgs {
 		String[] sortTest = new String[TRIALS*2];
 		
 		ArrayList<String> names = new ArrayList<>();
-		names.add("Daniel");
-		names.add("Saad");
-		names.add("Rishab");
-		names.add("Christian");
-		names.add("Zach");
-		names.add("Abby");
-		names.add("Justine");
-		names.add("Adam");
-		names.add("Anthony");
-		names.add("Bill");
-		names.add("Ariha");
-		names.add("Inica");
-		names.add("Adithi");
-		names.add("Tony");
-		names.add("Charlotte");
-		names.add("Leo");
-		names.add("Anthony");
-		names.add("Toby");
-		names.add("Spencer");
-		names.add("Cullen");
-		names.add("Shane");
+		names.add("Ken");
+		names.add("Bryan");
+		names.add("Jay");
+		names.add("Felix");
+		names.add("Rohit");
+		names.add("Arjun");
+		names.add("Ally");
+		names.add("Lizzy");
+		names.add("Ivan");
+		names.add("Anjaneya");
+		names.add("Jenna");
+		names.add("Sunwoo");
+		names.add("Jaden");
+		names.add("Jude");
+		names.add("Ian");
+		names.add("Mike");
 		
 		for(int i = 0; i < TRIALS; i++) {
 			shuffle(names);
