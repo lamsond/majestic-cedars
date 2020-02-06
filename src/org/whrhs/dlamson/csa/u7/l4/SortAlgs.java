@@ -79,6 +79,8 @@ public class SortAlgs {
 		names.add("Cullen");
 		names.add("Shane");
 		
+	
+		
 		for(int i = 0; i < TRIALS; i++) {
 			shuffle(names);
 			shuffleTest[2*i] = names.toString();
@@ -90,7 +92,7 @@ public class SortAlgs {
 			sortTest[2*i+1] = names.toString();
 		}
 		
-		System.out.println("Shufle Test: ");
+		System.out.println("Shuffle Test: ");
 		printList(shuffleTest);
 		System.out.println("Sort Test: ");
 		printList(sortTest);
