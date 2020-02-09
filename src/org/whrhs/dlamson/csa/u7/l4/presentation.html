@@ -25,7 +25,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Sorting (Part 1)</title>
+    <title>Sorting Notes - Day 2</title>
     <!-- Styles -->
     
     <link rel="stylesheet" media="print" href="file:///usr/local/lib/python3.5/dist-packages/landslide/themes/default/css/print.css">
@@ -49,12 +49,12 @@
     </div>
     <div class="slides">
       
-      <!-- slide source: sorting-notes.md -->
+      <!-- slide source: sorting-notes-day2.md -->
       <div class="slide-wrapper">
         <div class="slide slide-1">
           <div class="inner">
             
-            <header><h1>Sorting (Part 1)</h1></header>
+            <header><h1>Sorting Notes - Day 2</h1></header>
             
             
           </div>
@@ -67,28 +67,34 @@
           <footer>
             
             <aside class="source">
-              Source: <a href="sorting-notes.md">sorting-notes.md</a>
+              Source: <a href="sorting-notes-day2.md">sorting-notes-day2.md</a>
             </aside>
             
             <aside class="page_number">
-              1/9
+              1/5
             </aside>
           </footer>
         </div>
       </div>
       
-      <!-- slide source: sorting-notes.md -->
+      <!-- slide source: sorting-notes-day2.md -->
       <div class="slide-wrapper">
         <div class="slide slide-2">
           <div class="inner">
             
-            <header><h1>Lab Recap</h1></header>
+            <header><h1>LAB Notes / Due Dates / Schedule</h1></header>
             
             
-            <section><p>During the Runtime Lab we should have found:</p>
-<ol>
-<li>Binary Search is considerably faster than Linear Search (especially as the size of our arrays increases).</li>
-<li>The time it takes to sort however, is much longer than Linear Search. This makes Linear Search more efficient than Binary Search if we are only searching an array one time.</li>
+            <section><ol>
+<li>LAB is now due end of day Monday 2/10/19</li>
+<li>"Textbook" algorithms using integer arrays have been posted to Classroom<ul>
+<li>If stuck, use these as a guide and modify them to work with lists of Strings.</li>
+</ul>
+</li>
+<li><em>Albert.io</em> is also due end of the day Monday 2/10/20</li>
+<li>Monday's Class - Work on Study guides and finish up assignments.</li>
+<li>Review Wednesday</li>
+<li>Test on ArrayLists, Sorts, and Searches will be Thursday 2/13/20</li>
 </ol></section>
             
           </div>
@@ -101,60 +107,25 @@
           <footer>
             
             <aside class="source">
-              Source: <a href="sorting-notes.md">sorting-notes.md</a>
+              Source: <a href="sorting-notes-day2.md">sorting-notes-day2.md</a>
             </aside>
             
             <aside class="page_number">
-              2/9
+              2/5
             </aside>
           </footer>
         </div>
       </div>
       
-      <!-- slide source: sorting-notes.md -->
+      <!-- slide source: sorting-notes-day2.md -->
       <div class="slide-wrapper">
         <div class="slide slide-3">
           <div class="inner">
             
-            <header><h1>Algorithmic Efficiency</h1></header>
+            <header><h1>Tracing Passes of the Sort Algorithms</h1></header>
             
             
-            <section><p>This efficiency can be quantified using something called <code>Big Oh</code> notation (not on AP exam). Big Oh describes how the runtime of an algorithm will increase as the array size (n) increases.</p>
-<table>
-<thead>
-<tr>
-<th>Efficiency</th>
-<th>Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>O(1)</td>
-<td>Takes a constant amount of time regardless of the size of n.</td>
-</tr>
-<tr>
-<td>O(log(n))</td>
-<td>Time increases with n, however more slowly than linear (e.g. Binary Search)</td>
-</tr>
-<tr>
-<td>O(n)</td>
-<td>Increases linearly (e.g. Linear Search)</td>
-</tr>
-<tr>
-<td>O(nlog(n))</td>
-<td>Increases with n, faster than linear (e.g. <code>Arrays.sort()</code>)</td>
-</tr>
-<tr>
-<td>O(n^2)</td>
-<td>Increases to the square of n. (e.g. Insertion Sort, Selection Sort)</td>
-</tr>
-<tr>
-<td>O(2^n)</td>
-<td>Increases exponentially</td>
-</tr>
-</tbody>
-</table>
-<p><img alt="big oh graphs" src="https://cooervo.github.io/Algorithms-DataStructures-BigONotation/images/graphs/comparison.svg" /></p></section>
+            <section><p>Handout</p></section>
             
           </div>
           <div class="presenter_notes">
@@ -166,29 +137,27 @@
           <footer>
             
             <aside class="source">
-              Source: <a href="sorting-notes.md">sorting-notes.md</a>
+              Source: <a href="sorting-notes-day2.md">sorting-notes-day2.md</a>
             </aside>
             
             <aside class="page_number">
-              3/9
+              3/5
             </aside>
           </footer>
         </div>
       </div>
       
-      <!-- slide source: sorting-notes.md -->
+      <!-- slide source: sorting-notes-day2.md -->
       <div class="slide-wrapper">
         <div class="slide slide-4">
           <div class="inner">
             
-            <header><h1>Sort Algorithms for the AP Exam</h1></header>
+            <header><h1>What happens if we add a name mid-sort?</h1></header>
             
             
-            <section><ol>
-<li>Selection Sort (<code>O(n^2)</code>) - Today</li>
-<li>Insertion Sort (<code>O*n^2)</code>) - Today</li>
-<li>Merge Sort (<code>O(nlog(n))</code>) - Chapter 10 (Recursion)</li>
-</ol></section>
+            <section><p>Handout side 2</p>
+<p>Which algorithm would be best to use in this situation</p>
+<p>Selection vs. Insertion?</p></section>
             
           </div>
           <div class="presenter_notes">
@@ -200,33 +169,25 @@
           <footer>
             
             <aside class="source">
-              Source: <a href="sorting-notes.md">sorting-notes.md</a>
+              Source: <a href="sorting-notes-day2.md">sorting-notes-day2.md</a>
             </aside>
             
             <aside class="page_number">
-              4/9
+              4/5
             </aside>
           </footer>
         </div>
       </div>
       
-      <!-- slide source: sorting-notes.md -->
+      <!-- slide source: sorting-notes-day2.md -->
       <div class="slide-wrapper">
-        <div class="slide has_code slide-5">
+        <div class="slide slide-5">
           <div class="inner">
             
-            <header><h1>Selection Sort Pseudo-code</h1></header>
+            <header><h1>Runtime Analysis - Justification</h1></header>
             
             
-            <section><div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="k">for</span> <span class="n">each</span> <span class="n">position</span> <span class="n">in</span> <span class="n">the</span> <span class="n">array</span>
-<span class="lineno">2 </span>    <span class="n">find</span> <span class="n">the</span> <span class="n">minimum</span> <span class="n">value</span> <span class="n">from</span> <span class="n">the</span> <span class="n">current</span> <span class="n">position</span> <span class="n">to</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">the</span> <span class="n">array</span><span class="o">.</span>  
-<span class="lineno">3 </span>    <span class="k">if</span> <span class="n">the</span> <span class="n">minimum</span> <span class="n">is</span> <span class="n">not</span> <span class="n">at</span> <span class="n">the</span> <span class="n">current</span> <span class="n">position</span>
-<span class="lineno">4 </span>        <span class="n">swap</span> <span class="n">the</span> <span class="n">current</span> <span class="n">and</span> <span class="n">the</span> <span class="n">min</span>
-<span class="lineno">5 </span>    <span class="n">move</span> <span class="n">to</span> <span class="n">the</span> <span class="n">next</span> <span class="n">position</span> <span class="n">in</span> <span class="n">the</span> <span class="n">array</span><span class="o">.</span>
-</pre></div>
-
-<p><strong>Simulation</strong><br />
-<a href="http://www.cs.armstrong.edu/liang/animation/web/SelectionSort.html">http://www.cs.armstrong.edu/liang/animation/web/SelectionSort.html</a></p></section>
+            <section><p>O(n^2) and Nested For Loops</p></section>
             
           </div>
           <div class="presenter_notes">
@@ -238,144 +199,11 @@
           <footer>
             
             <aside class="source">
-              Source: <a href="sorting-notes.md">sorting-notes.md</a>
+              Source: <a href="sorting-notes-day2.md">sorting-notes-day2.md</a>
             </aside>
             
             <aside class="page_number">
-              5/9
-            </aside>
-          </footer>
-        </div>
-      </div>
-      
-      <!-- slide source: sorting-notes.md -->
-      <div class="slide-wrapper">
-        <div class="slide slide-6">
-          <div class="inner">
-            
-            <header><h1>Selection Sort Names</h1></header>
-            
-            
-          </div>
-          <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-          </div>
-          <footer>
-            
-            <aside class="source">
-              Source: <a href="sorting-notes.md">sorting-notes.md</a>
-            </aside>
-            
-            <aside class="page_number">
-              6/9
-            </aside>
-          </footer>
-        </div>
-      </div>
-      
-      <!-- slide source: sorting-notes.md -->
-      <div class="slide-wrapper">
-        <div class="slide has_code slide-7">
-          <div class="inner">
-            
-            <header><h1>Insertion Sort Pseudo-code</h1></header>
-            
-            
-            <section><div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="k">for</span> <span class="n">each</span> <span class="n">position</span> <span class="n">in</span> <span class="n">the</span> <span class="nf">array</span> <span class="o">(</span><span class="n">start</span> <span class="err">@</span> <span class="n">index</span> <span class="mi">1</span><span class="o">)</span>
-<span class="lineno">2 </span>    <span class="n">insert</span> <span class="n">the</span> <span class="n">current</span> <span class="n">value</span> <span class="n">into</span> <span class="n">order</span> <span class="n">relative</span> <span class="n">to</span> <span class="n">the</span> <span class="n">values</span> <span class="n">on</span> <span class="n">its</span> <span class="n">left</span><span class="o">.</span>
-<span class="lineno">3 </span>    <span class="n">move</span> <span class="n">to</span> <span class="n">the</span> <span class="n">next</span> <span class="n">position</span> <span class="n">in</span> <span class="n">the</span> <span class="n">array</span><span class="o">.</span>
-</pre></div>
-
-<p><strong>Simulation</strong><br />
-<a href="https://www.hackerearth.com/practice/algorithms/sorting/insertion-sort/visualize/">https://www.hackerearth.com/practice/algorithms/sorting/insertion-sort/visualize/</a></p></section>
-            
-          </div>
-          <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-          </div>
-          <footer>
-            
-            <aside class="source">
-              Source: <a href="sorting-notes.md">sorting-notes.md</a>
-            </aside>
-            
-            <aside class="page_number">
-              7/9
-            </aside>
-          </footer>
-        </div>
-      </div>
-      
-      <!-- slide source: sorting-notes.md -->
-      <div class="slide-wrapper">
-        <div class="slide slide-8">
-          <div class="inner">
-            
-            <header><h1>Insertion Sort Names</h1></header>
-            
-            
-          </div>
-          <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-          </div>
-          <footer>
-            
-            <aside class="source">
-              Source: <a href="sorting-notes.md">sorting-notes.md</a>
-            </aside>
-            
-            <aside class="page_number">
-              8/9
-            </aside>
-          </footer>
-        </div>
-      </div>
-      
-      <!-- slide source: sorting-notes.md -->
-      <div class="slide-wrapper">
-        <div class="slide slide-9">
-          <div class="inner">
-            
-            <header><h1>LAB-027</h1></header>
-            
-            
-            <section><p>Try to implement these to algorithms with the following <code>static void</code> methods</p>
-<ol>
-<li><code>selectionSort()</code>: takes an ArrayList of names and puts them into alphabetical order using the selection sort algorithm. (see <code>compareTo()</code> if stuck on how to order)</li>
-<li><code>insertionSort()</code>: takes an ArrayList of names and puts them into alphabetical order using the insertion sort algorithm.</li>
-<li>
-<p><code>shuffle()</code>: takes an ArrayList of names and puts them into a random order. (see <code>Knuth shuffle</code> if stuck)</p>
-</li>
-<li>
-<p>In <code>main()</code> create an ArrayList of 10 names.</p>
-</li>
-<li>Test your sort algorithms at least 3 times shuffling in between each time.</li>
-</ol></section>
-            
-          </div>
-          <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-          </div>
-          <footer>
-            
-            <aside class="source">
-              Source: <a href="sorting-notes.md">sorting-notes.md</a>
-            </aside>
-            
-            <aside class="page_number">
-              9/9
+              5/5
             </aside>
           </footer>
         </div>
@@ -390,56 +218,32 @@
       <caption>Table of Contents</caption>
       
       <tr id="toc-row-1">
-        <th><a href="#slide1">Sorting (Part 1)</a></th>
+        <th><a href="#slide1">Sorting Notes - Day 2</a></th>
         <td><a href="#slide1">1</a></td>
       </tr>
       
       
       <tr id="toc-row-2">
-        <th><a href="#slide2">Lab Recap</a></th>
+        <th><a href="#slide2">LAB Notes / Due Dates / Schedule</a></th>
         <td><a href="#slide2">2</a></td>
       </tr>
       
       
       <tr id="toc-row-3">
-        <th><a href="#slide3">Algorithmic Efficiency</a></th>
+        <th><a href="#slide3">Tracing Passes of the Sort Algorithms</a></th>
         <td><a href="#slide3">3</a></td>
       </tr>
       
       
       <tr id="toc-row-4">
-        <th><a href="#slide4">Sort Algorithms for the AP Exam</a></th>
+        <th><a href="#slide4">What happens if we add a name mid-sort?</a></th>
         <td><a href="#slide4">4</a></td>
       </tr>
       
       
       <tr id="toc-row-5">
-        <th><a href="#slide5">Selection Sort Pseudo-code</a></th>
+        <th><a href="#slide5">Runtime Analysis - Justification</a></th>
         <td><a href="#slide5">5</a></td>
-      </tr>
-      
-      
-      <tr id="toc-row-6">
-        <th><a href="#slide6">Selection Sort Names</a></th>
-        <td><a href="#slide6">6</a></td>
-      </tr>
-      
-      
-      <tr id="toc-row-7">
-        <th><a href="#slide7">Insertion Sort Pseudo-code</a></th>
-        <td><a href="#slide7">7</a></td>
-      </tr>
-      
-      
-      <tr id="toc-row-8">
-        <th><a href="#slide8">Insertion Sort Names</a></th>
-        <td><a href="#slide8">8</a></td>
-      </tr>
-      
-      
-      <tr id="toc-row-9">
-        <th><a href="#slide9">LAB-027</a></th>
-        <td><a href="#slide9">9</a></td>
       </tr>
       
       

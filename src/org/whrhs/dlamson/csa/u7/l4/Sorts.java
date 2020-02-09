@@ -5,8 +5,8 @@ import java.util.Arrays;
 public class Sorts {
 	
 	public static void selectionSort(int[] nums) {
-		// loop through all array positions
-		for(int i = 0; i < nums.length; i++) {
+		// loop through all array positions except last one
+		for(int i = 0; i < nums.length-1; i++) {
 			int minIndex = i;
 			
 			// find the min of the values after n
