@@ -16,6 +16,10 @@ If we wanted to group of these *rows* into a single array, we can do the followi
 	!Java
 	String[][] csaPeriod7 = {row1, row2, row3, row4, row5};
 
-**NOTE: **The datatype of this array is `String[][]`. This is because `csaPeriod7` is an array of `String[]` objects.  
+**NOTE: **The data-type of this array is `String[][]`. This is because `csaPeriod7` is an array of `String[]` objects.  
 
-
+	!Java
+	System.out.println(csaPeriod7);
+	System.out.println(Arrays.toString(csaPeriod7));
+	System.out.println(Arrays.deepToString(csaPeriod7));
+	
