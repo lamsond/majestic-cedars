@@ -19,7 +19,9 @@ If we wanted to group of these *rows* into a single array, we can do the followi
 **NOTE: **The data-type of this array is `String[][]`. This is because `csaPeriod7` is an array of `String[]` objects.  
 
 	!Java
-	System.out.println(csaPeriod7);
-	System.out.println(Arrays.toString(csaPeriod7));
-	System.out.println(Arrays.deepToString(csaPeriod7));
+	System.out.println(csaPeriod7); // prints a reference
+	System.out.println(Arrays.toString(csaPeriod7)); // prints an array of references
+	System.out.println(Arrays.deepToString(csaPeriod7)); // prints array of array of strings
+
+
 	

@@ -28,6 +28,5 @@ public class IntroArrays2D{
 		// board[row][col]
 		System.out.println(Arrays.deepToString(board2));
 		
-		
 	}
 }
