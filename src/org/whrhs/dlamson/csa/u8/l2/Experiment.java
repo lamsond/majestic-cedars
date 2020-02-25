@@ -20,10 +20,7 @@ public class Experiment {
 	
 	public static void main(String[] args) {
 		
-		int[][] test = {{23, 24, 26}, {-6, 2, 3}, {5, 2, 3}};
-		int m = getLargestSquare(test);
-		System.out.println(m);
-		//System.out.println((int) Math.sqrt(-121));
+		System.out.println(Math.sqrt(-2));
 	}
 
 }
