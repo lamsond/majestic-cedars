@@ -33,14 +33,7 @@ public class Deck {
 		return cards.toString();
 	}
 	
-	public static void main(String[] args) {
-		Deck deck = new Deck();
-		deck.shuffle();
-		System.out.println(deck);
-	}
-	
 	public Card deal() {
-		return cards.get(0);
+		return cards.remove(0);
 	}
-
 }
