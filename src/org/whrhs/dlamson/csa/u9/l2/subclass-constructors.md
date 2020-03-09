@@ -110,12 +110,21 @@ All the common code defined in the superclass is not written in the subclass. It
 ---
 # Implicit vs. Explicit Super Constructor Calls
 
-For this reason, the Java compiler will look to see if you made a call to `super()` on the first line of your constructor(s) (Explicit Super Constructor Call). If you did not, it will attempt to implicitly call `super()` with no arguments before running any of your other code. 
+For this reason, the Java compiler will look to see if you made a call to `super()` on the first line of your constructor(s) (Explicit Super Constructor Call). If you did not, it will attempt to implicitly call `super()` with no arguments before running any of your other code.  
 
-If you did not write a constructor, the compiler will attempt to call `super()` when executing the default constructor. This is the source of the error.
+**Implicit Call:** Even super classes include this implicit call. This is because all classes are inherited from the `Object` class.
+
+	!Java
+	public class Parent{
+	public Parent(String name){
+		// super(); <- will call new Object() automatically before setting name
+		this.name = name;
+	}
 
 ---
 # Error Explained
+
+When you do not write a constructor, the compiler attempts to call `super()` when executing the default constructor. This is the source of the error.
   
 	!Java
 	public class Parent{
@@ -140,4 +149,14 @@ In other words:
 ---
 # Demonstrating Implicit Super Constructor Calls
 
-To 
+To verify this is happening we can insert `println` statements in the beginning of our constructors to verify the order in which they executed.  
+
+---
+# Takeaways
+
+* We only need to explicitly call `super()` if we are passing parameters to the super constructor.
+* Explicit calls to `super()` must occur on the first line of the constructor.
+* Implicit calls to `super()` will not work if a no argument constructor doesn't exist. 
+
+Practice Problems
+
