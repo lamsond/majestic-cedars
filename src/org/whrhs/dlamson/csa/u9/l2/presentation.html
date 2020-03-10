@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+                 Alex Russell (slightlyoff@chromium.org)
+
+  landslide modifications: Adam Zapletal (adamzap@gmail.com)
+                           Nicolas Perriault (nperriault@gmail.com)
+-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>U9L2: Writing Constructors for Subclasses</title>
+    <!-- Styles -->
+    
+    <link rel="stylesheet" media="print" href="file:///usr/local/lib/python3.5/dist-packages/landslide/themes/default/css/print.css">
+    <link rel="stylesheet" media="screen, projection" href="file:///usr/local/lib/python3.5/dist-packages/landslide/themes/default/css/screen.css">
+    
+    
+    <!-- /Styles -->
+    <!-- Javascripts -->
+    
+    <script type="text/javascript" src="file:///usr/local/lib/python3.5/dist-packages/landslide/themes/default/js/slides.js"></script>
+    
+    
+    
+    <!-- /Javascripts -->
+</head>
+<body>
+  <div id="blank"></div>
+  <div class="presentation">
+    <div id="current_presenter_notes">
+      <div id="presenter_note"></div>
+    </div>
+    <div class="slides">
+      
+      <!-- slide source: subclass-constructors.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-1">
+          <div class="inner">
+            
+            <header><h1>U9L2: Writing Constructors for Subclasses</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="subclass-constructors.md">subclass-constructors.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              1/13
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: subclass-constructors.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-2">
+          <div class="inner">
+            
+            <header><h1>Constructors are not inherited</h1></header>
+            
+            
+            <section><p><strong>Inherited</strong>  </p>
+<ol>
+<li>All <code>public</code> and <code>protected</code> attributes and methods.</li>
+<li><code>default</code> attributes and methods as long as the subclass is in the same package as the superclass.</li>
+</ol>
+<p><strong>Not Inherited</strong>  </p>
+<ol>
+<li>Constructors</li>
+<li>All <code>private</code> attributes and methods.</li>
+<li><code>default</code> attributes and methods if the subclass is in a different package than the superclass.</li>
+</ol>
+<p>As we saw in the previous lab, we can still invoke the superclass constructor by calling <code>super()</code>, but technically this doesn't count as being <em>inherited</em>. <strong>Watch out for this on multiple choice problems.</strong></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="subclass-constructors.md">subclass-constructors.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              2/13
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: subclass-constructors.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-3">
+          <div class="inner">
+            
+            <header><h1>Eclipse Error Flag</h1></header>
+            
+            
+            <section><p>Suppose we define the following class named <code>Parent</code> that we will extend to create a subclass named <code>Child</code>:</p>
+<div class="highlight"><pre><span></span><span class="lineno"> 1 </span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Parent</span><span class="o">{</span>
+<span class="lineno"> 2 </span>    <span class="kd">protected</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+<span class="lineno"> 3 </span>    <span class="kd">public</span> <span class="nf">Parent</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">){</span>
+<span class="lineno"> 4 </span>        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+<span class="lineno"> 5 </span>    <span class="o">}</span>
+<span class="lineno"> 6 </span><span class="o">}</span>
+<span class="lineno"> 7 </span><span class="cm">/*-------------------*/</span>
+<span class="lineno"> 8 </span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Child</span> <span class="kd">extends</span> <span class="n">Parent</span><span class="o">{</span>
+<span class="lineno"> 9 </span>    <span class="c1">// TODO: Implement Class</span>
+<span class="lineno">10 </span><span class="o">}</span>
+</pre></div>
+
+<p>Eclipse flags the <code>Child</code> class right away with the following error:<br />
+<img alt="implicit-error" src="file:///home/conrad/git/majestic-cedars/src/org/whrhs/dlamson/csa/u9/l2/implicit-error.png" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="subclass-constructors.md">subclass-constructors.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              3/13
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: subclass-constructors.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-4">
+          <div class="inner">
+            
+            <header><h1>What does that mean?</h1></header>
+            
+            
+            <section><blockquote>
+<p>Implicit super constructor Parent() is undefined for default constructor. Must define an explicit constructor.</p>
+</blockquote>
+<p><img alt="officespace" src="file:///home/conrad/git/majestic-cedars/src/org/whrhs/dlamson/csa/u9/l2/pc-load-letter.jpg" /></p>
+<p>How did we fix this in the lab? By defining an explicit constructor:  </p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kd">public</span> <span class="nf">Child</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">){</span>
+<span class="lineno">2 </span>    <span class="kd">super</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+<span class="lineno">3 </span><span class="o">}</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="subclass-constructors.md">subclass-constructors.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              4/13
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: subclass-constructors.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-5">
+          <div class="inner">
+            
+            <header><h1>What does that mean?</h1></header>
+            
+            
+            <section><p>To fully understand why this is necessary and what the error message is saying, we need to understand the following 3 concepts. </p>
+<ol>
+<li>Default constructors.</li>
+<li>Why calling the super constructor is necessary.</li>
+<li>Implicit vs. Explicit super constructor calls.</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="subclass-constructors.md">subclass-constructors.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              5/13
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: subclass-constructors.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-6">
+          <div class="inner">
+            
+            <header><h1>Default Constructors (Review)</h1></header>
+            
+            
+            <section><p>A <strong>default constructor</strong> is a no argument constructor generated by the compiler when no explicit constructors have been provided. For example if we define the following class with out a constructor: </p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kd">class</span> <span class="nc">Pizza</span><span class="o">{</span>
+<span class="lineno">2 </span>    <span class="kt">int</span> <span class="n">num</span><span class="o">;</span>
+<span class="lineno">3 </span>    <span class="n">String</span> <span class="n">str</span><span class="o">;</span>
+<span class="lineno">4 </span>
+<span class="lineno">5 </span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">printInfo</span><span class="o">(){</span>
+<span class="lineno">6 </span>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;num: &quot;</span> <span class="o">+</span> <span class="n">num</span> <span class="o">+</span> <span class="s">&quot;, str: &quot;</span> <span class="o">+</span> <span class="n">str</span><span class="o">);</span>
+<span class="lineno">7 </span>    <span class="o">}</span>
+<span class="lineno">8 </span><span class="o">}</span>
+</pre></div>
+
+<p>We are still able to instantiate this class thanks to the <em>default constructor</em>  </p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="n">Pizza</span> <span class="n">pizza</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Pizza</span><span class="o">();</span>
+<span class="lineno">2 </span><span class="n">pizza</span><span class="o">.</span><span class="na">printInfo</span><span class="o">();</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="subclass-constructors.md">subclass-constructors.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              6/13
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: subclass-constructors.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-7">
+          <div class="inner">
+            
+            <header><h1>No Default Constructor here</h1></header>
+            
+            
+            <section><p>If we define at least 1 constructor, the default constructor will <strong>not</strong> be generated. For example if the following constructor were in the <code>Pizza</code> class </p>
+<div class="highlight"><pre><span></span><span class="lineno"> 1 </span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Pizza</span><span class="o">{</span>
+<span class="lineno"> 2 </span>    <span class="kt">int</span> <span class="n">num</span><span class="o">;</span>
+<span class="lineno"> 3 </span>    <span class="n">String</span> <span class="n">str</span><span class="o">;</span>
+<span class="lineno"> 4 </span>
+<span class="lineno"> 5 </span>    <span class="kd">public</span> <span class="nf">Pizza</span><span class="o">(</span><span class="kt">int</span> <span class="n">num</span><span class="o">,</span> <span class="n">String</span> <span class="n">str</span><span class="o">){</span>
+<span class="lineno"> 6 </span>        <span class="k">this</span><span class="o">.</span><span class="na">num</span> <span class="o">=</span> <span class="n">num</span><span class="o">;</span>
+<span class="lineno"> 7 </span>        <span class="k">this</span><span class="o">.</span><span class="na">str</span> <span class="o">=</span> <span class="n">str</span><span class="o">;</span>
+<span class="lineno"> 8 </span>    <span class="o">}</span>
+<span class="lineno"> 9 </span>
+<span class="lineno">10 </span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">printInfo</span><span class="o">(){</span>
+<span class="lineno">11 </span>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;num: &quot;</span> <span class="o">+</span> <span class="n">num</span> <span class="o">+</span> <span class="s">&quot;, str: &quot;</span> <span class="o">+</span> <span class="n">str</span><span class="o">);</span>
+<span class="lineno">12 </span>    <span class="o">}</span>
+<span class="lineno">13 </span><span class="o">}</span>
+</pre></div>
+
+<p>Then we couldn't create an object using the no argument constructor<br />
+<code>Pizza pizza = new Pizza()</code> without explicitly defining one.</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="subclass-constructors.md">subclass-constructors.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              7/13
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: subclass-constructors.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-8">
+          <div class="inner">
+            
+            <header><h1>Why call the super constructor?</h1></header>
+            
+            
+            <section><p>When we inherit a class in Java we say the inherited class <code>extends</code> the superclass. The <code>extends</code> keyword is well-chosen since the subclass should only include the following code:  </p>
+<ol>
+<li>Specific attributes not relevant to the superclass.</li>
+<li>Specific methods not relevant to the superclass.</li>
+<li>Methods that need to customized to work with the subclass. (Overrides)</li>
+</ol>
+<p>All the common code defined in the superclass is not written in the subclass. It is isn't possible to construct a subclass object without constructing a superclass object first and adding the new features to it.  </p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="subclass-constructors.md">subclass-constructors.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              8/13
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: subclass-constructors.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-9">
+          <div class="inner">
+            
+            <header><h1>Implicit vs. Explicit Calls</h1></header>
+            
+            
+            <section><p>For this reason, the Java compiler will look to see if you made a call to <code>super()</code> on the first line of your constructor(s) (Explicit Super Constructor Call). If you did not, it will attempt to implicitly call <code>super()</code> with no arguments before running any of your other code.  </p>
+<p><strong>Implicit Call:</strong> Even super classes include this implicit call. This is because all classes are inherited from the <code>Object</code> class.</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Parent</span><span class="o">{</span>
+<span class="lineno">2 </span><span class="kd">public</span> <span class="nf">Parent</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">){</span>
+<span class="lineno">3 </span>    <span class="c1">// super(); &lt;- will call new Object() automatically before setting name</span>
+<span class="lineno">4 </span>    <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+<span class="lineno">5 </span><span class="o">}</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="subclass-constructors.md">subclass-constructors.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              9/13
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: subclass-constructors.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-10">
+          <div class="inner">
+            
+            <header><h1>Error Explained</h1></header>
+            
+            
+            <section><p>When you do not write a constructor, the compiler attempts to call <code>super()</code> when executing the default constructor. This is the source of the error.</p>
+<div class="highlight"><pre><span></span><span class="lineno"> 1 </span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Parent</span><span class="o">{</span>
+<span class="lineno"> 2 </span>    <span class="kd">protected</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+<span class="lineno"> 3 </span>    <span class="kd">public</span> <span class="nf">Parent</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">){</span>
+<span class="lineno"> 4 </span>        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+<span class="lineno"> 5 </span>    <span class="o">}</span>
+<span class="lineno"> 6 </span><span class="o">}</span>
+<span class="lineno"> 7 </span><span class="cm">/*-------------------*/</span>
+<span class="lineno"> 8 </span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Child</span> <span class="kd">extends</span> <span class="n">Parent</span><span class="o">{</span>
+<span class="lineno"> 9 </span>    <span class="c1">// TODO: Implement Class</span>
+<span class="lineno">10 </span><span class="o">}</span>
+</pre></div>
+
+<p>Child has no constructor yet. When this code compiles the following will happen.</p>
+<ol>
+<li>The compiler generates a default constructor <code>Child()</code></li>
+<li>This constructor implicitly calls <code>Parent()</code> however <code>Parent()</code> doesn't exist, only <code>Parent(String name)</code>. </li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="subclass-constructors.md">subclass-constructors.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              10/13
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: subclass-constructors.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-11">
+          <div class="inner">
+            
+            <header><h1>Error Explained</h1></header>
+            
+            
+            <section><ol>
+<li>The compiler generates a default constructor <code>Child()</code></li>
+<li>This constructor implicitly calls <code>Parent()</code> however <code>Parent()</code> doesn't exist, only <code>Parent(String name)</code>. </li>
+</ol>
+<p>In other words: </p>
+<blockquote>
+<p>Implicit super constructor Parent() is undefined for default constructor. Must define an explicit constructor.</p>
+</blockquote></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="subclass-constructors.md">subclass-constructors.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              11/13
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: subclass-constructors.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-12">
+          <div class="inner">
+            
+            <header><h1>Demonstrate Implicit Calls</h1></header>
+            
+            
+            <section><p>To verify this is happening we can insert <code>println</code> statements in the beginning of our constructors to verify the order in which they executed.  </p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="subclass-constructors.md">subclass-constructors.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              12/13
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: subclass-constructors.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-13">
+          <div class="inner">
+            
+            <header><h1>Takeaways</h1></header>
+            
+            
+            <section><ul>
+<li>We only need to explicitly call <code>super()</code> if we are passing parameters to the super constructor.</li>
+<li>Explicit calls to <code>super()</code> must occur on the first line of the constructor.</li>
+<li>Implicit calls to <code>super()</code> will not work if a no argument constructor doesn't exist. </li>
+</ul>
+<p>Practice Problems</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="subclass-constructors.md">subclass-constructors.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              13/13
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div id="toc" class="sidebar hidden">
+    <h2>Table of Contents</h2>
+    <table>
+      <caption>Table of Contents</caption>
+      
+      <tr id="toc-row-1">
+        <th><a href="#slide1">U9L2: Writing Constructors for Subclasses</a></th>
+        <td><a href="#slide1">1</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-2">
+        <th><a href="#slide2">Constructors are not inherited</a></th>
+        <td><a href="#slide2">2</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-3">
+        <th><a href="#slide3">Eclipse Error Flag</a></th>
+        <td><a href="#slide3">3</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-4">
+        <th><a href="#slide4">What does that mean?</a></th>
+        <td><a href="#slide4">4</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-5">
+        <th><a href="#slide5">What does that mean?</a></th>
+        <td><a href="#slide5">5</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-6">
+        <th><a href="#slide6">Default Constructors (Review)</a></th>
+        <td><a href="#slide6">6</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-7">
+        <th><a href="#slide7">No Default Constructor here</a></th>
+        <td><a href="#slide7">7</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-8">
+        <th><a href="#slide8">Why call the super constructor?</a></th>
+        <td><a href="#slide8">8</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-9">
+        <th><a href="#slide9">Implicit vs. Explicit Calls</a></th>
+        <td><a href="#slide9">9</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-10">
+        <th><a href="#slide10">Error Explained</a></th>
+        <td><a href="#slide10">10</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-11">
+        <th><a href="#slide11">Error Explained</a></th>
+        <td><a href="#slide11">11</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-12">
+        <th><a href="#slide12">Demonstrate Implicit Calls</a></th>
+        <td><a href="#slide12">12</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-13">
+        <th><a href="#slide13">Takeaways</a></th>
+        <td><a href="#slide13">13</a></td>
+      </tr>
+      
+      
+    </table>
+  </div>
+  
+  <div id="help" class="sidebar hidden">
+    <h2>Help</h2>
+    <table>
+      <caption>Help</caption>
+      <tr>
+        <th>Table of Contents</th>
+        <td>t</td>
+      </tr>
+      <tr>
+        <th>Exposé</th>
+        <td>ESC</td>
+      </tr>
+      <tr>
+        <th>Full screen slides</th>
+        <td>e</td>
+      </tr>
+      <tr>
+        <th>Presenter View</th>
+        <td>p</td>
+      </tr>
+      <tr>
+        <th>Source Files</th>
+        <td>s</td>
+      </tr>
+      <tr>
+        <th>Slide Numbers</th>
+        <td>n</td>
+      </tr>
+      <tr>
+        <th>Toggle screen blanking</th>
+        <td>b</td>
+      </tr>
+      <tr>
+        <th>Show/hide slide context</th>
+        <td>c</td>
+      </tr>
+      <tr>
+        <th>Notes</th>
+        <td>2</td>
+      </tr>
+      <tr>
+        <th>Help</th>
+        <td>h</td>
+      </tr>
+    </table>
+  </div>
+  <script>main()</script>
+</body>
+</html>
