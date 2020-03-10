@@ -5,12 +5,15 @@ public class Parent {
 	protected String name;
 	
 	public Parent(String name) {
-		System.out.println("Parent(String name) is executing");
+		// super();
+		System.out.println("Parent(String name) is running");
 		this.name = name;
 	}
 	
 	public Parent() {
-		System.out.println("Parent() is executing");
-		name = "Bob";
+		// super();
+		System.out.println("Parent() is running");
+		name = "Jay";
 	}
+
 }

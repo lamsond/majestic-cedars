@@ -4,10 +4,12 @@
 # Constructors are not inherited
 
 **Inherited**  
+
 1. All `public` and `protected` attributes and methods.
 2. `default` attributes and methods as long as the subclass is in the same package as the superclass.
 
 **Not Inherited**  
+
 1. Constructors
 2. All `private` attributes and methods.
 3. `default` attributes and methods if the subclass is in a different package than the superclass.
@@ -15,7 +17,7 @@
 As we saw in the previous lab, we can still invoke the superclass constructor by calling `super()`, but technically this doesn't count as being *inherited*. **Watch out for this on multiple choice problems.**
 
 ---
-# Eclipse Error Flag (Implicit Constructor...)
+# Eclipse Error Flag
 
 Suppose we define the following class named `Parent` that we will extend to create a subclass named `Child`:
 
@@ -48,7 +50,10 @@ How did we fix this in the lab? By defining an explicit constructor:
 		super(name);
 	}
 
-To fully understand why this is necessary and what the error message is saying, we need to understand the following 3 concepts.  
+---
+# What does that mean?
+To fully understand why this is necessary and what the error message is saying, we need to understand the following 3 concepts. 
+ 
 1. Default constructors.
 2. Why calling the super constructor is necessary.
 3. Implicit vs. Explicit super constructor calls.
@@ -94,10 +99,11 @@ If we define at least 1 constructor, the default constructor will **not** be gen
 		}
 	}
 	
-Then we couldn't create an object using the no argument constructor `Pizza pizza = new Pizza()` without explicitly defining one.
+Then we couldn't create an object using the no argument constructor  
+`Pizza pizza = new Pizza()` without explicitly defining one.
 
 ---
-# Why do we need to call the super constructor?
+# Why call the super constructor?
 
 When we inherit a class in Java we say the inherited class `extends` the superclass. The `extends` keyword is well-chosen since the subclass should only include the following code:  
 
@@ -108,7 +114,7 @@ When we inherit a class in Java we say the inherited class `extends` the supercl
 All the common code defined in the superclass is not written in the subclass. It is isn't possible to construct a subclass object without constructing a superclass object first and adding the new features to it.  
  
 ---
-# Implicit vs. Explicit Super Constructor Calls
+# Implicit vs. Explicit Calls
 
 For this reason, the Java compiler will look to see if you made a call to `super()` on the first line of your constructor(s) (Explicit Super Constructor Call). If you did not, it will attempt to implicitly call `super()` with no arguments before running any of your other code.  
 
@@ -143,11 +149,17 @@ Child has no constructor yet. When this code compiles the following will happen.
 1. The compiler generates a default constructor `Child()`
 2. This constructor implicitly calls `Parent()` however `Parent()` doesn't exist, only `Parent(String name)`. 
 
+---
+# Error Explained
+
+1. The compiler generates a default constructor `Child()`
+2. This constructor implicitly calls `Parent()` however `Parent()` doesn't exist, only `Parent(String name)`. 
+
 In other words: 
 > Implicit super constructor Parent() is undefined for default constructor. Must define an explicit constructor.
 
 ---
-# Demonstrating Implicit Super Constructor Calls
+# Demonstrate Implicit Calls
 
 To verify this is happening we can insert `println` statements in the beginning of our constructors to verify the order in which they executed.  
 
