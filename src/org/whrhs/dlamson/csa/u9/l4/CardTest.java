@@ -6,8 +6,8 @@ public class CardTest {
 
 	public static void main(String[] args) {
 		
-		Card card1 = new Card(11, 3);
-		Card card2 = new Card(11, 3);
+		Card card1 = new Card(11, 0);
+		Card card2 = new Card(11, 0);
 		System.out.println(card1);
 		System.out.println(card2);
 		String name = "Ace of Spades";

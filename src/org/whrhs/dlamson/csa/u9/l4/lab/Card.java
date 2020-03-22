@@ -1,4 +1,4 @@
-package org.whrhs.dlamson.csa.u9.l4;
+package org.whrhs.dlamson.csa.u9.l4.lab;
 
 public class Card {
 	
@@ -16,16 +16,6 @@ public class Card {
 		suit = SUITS[(int)(Math.random() * SUITS.length)];
 	}
 	
-	private int setValue(int rankIndex) {
-		if(rankIndex <= 8) {
-			return rankIndex + 2;
-		}
-		if(rankIndex < RANKS.length - 1) {
-			return 10;
-		}
-		return 11;
-	}
-	
 	/* 
 	 * precondition: rankIndex is between 0 and 12 inclusive
 	 * precondition: suitIndex is between 0 and 3 inclusive
@@ -35,6 +25,16 @@ public class Card {
 		value = setValue(rankIndex);
 		rank = RANKS[rankIndex];
 		suit = SUITS[suitIndex];
+	}
+	
+	private int setValue(int rankIndex) {
+		if(rankIndex <= 8) {
+			return rankIndex + 2;
+		}
+		if(rankIndex < RANKS.length - 1) {
+			return 10;
+		}
+		return 11;
 	}
 	
 	public int getValue() {
@@ -48,16 +48,8 @@ public class Card {
 	
 	@Override
 	public boolean equals(Object other) {
-		if(!(other instanceof Card)) {
-			return false;
-		}
-		Card otherCard = (Card) other;
-		return this.rank.equals(otherCard.rank) && this.suit == otherCard.suit;
-	}
-	
-	@Override
-	public int hashCode() {
-		return 31 * suit + rank.hashCode();
+		return this.rank.equals(other.rank) && this.suit == other.suit;
 	}
 
 }
+
