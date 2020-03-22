@@ -38,7 +38,7 @@ public class BlackjackHand {
 		int tie = 0;
 		
 		
-		for(int i = 0; i <= 100000; i++) {
+		for(int i = 0; i <= 1000000; i++) {
 			BlackjackHand hand1 = new BlackjackHand();
 			BlackjackHand hand2 = new BlackjackHand();
 			handValues[hand1.getValue()]++;
