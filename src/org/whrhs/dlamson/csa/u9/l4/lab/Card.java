@@ -46,8 +46,7 @@ public class Card {
 		return rank + suit;
 	}
 	
-	@Override
-	public boolean equals(Object other) {
+	public boolean equals(Card other) {
 		return this.rank.equals(other.rank) && this.suit == other.suit;
 	}
 

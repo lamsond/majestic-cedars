@@ -1,5 +1,7 @@
 package org.whrhs.dlamson.csa.u9.l4;
 
+import java.util.Arrays;
+
 public class BlackjackHand {
 	
 	private Card card1;
@@ -28,6 +30,26 @@ public class BlackjackHand {
 	
 	public int getValue() {
 		return value;
+	}
+	
+	public static void main(String[] args) {
+		
+		int[] handValues = new int[23];
+		int tie = 0;
+		
+		
+		for(int i = 0; i <= 100000; i++) {
+			BlackjackHand hand1 = new BlackjackHand();
+			BlackjackHand hand2 = new BlackjackHand();
+			handValues[hand1.getValue()]++;
+			handValues[hand2.getValue()]++;
+			if(hand1.equals(hand2)) {
+				tie++;
+			}
+		}
+		
+		System.out.println(Arrays.toString(handValues));
+		System.out.println(tie);
 	}
 
 }
