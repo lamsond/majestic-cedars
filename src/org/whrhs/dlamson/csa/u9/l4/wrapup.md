@@ -1,11 +1,10 @@
-# U9L4: The `Object` class
-## Everyone's favorite SUPERCLASS :)
+# U9L4: `Object` the Ultimate Super Class
 
 ---
 # the `Object` class
 
-In Java, every class that doesn't explicitly extend another class, implicitly extends the `Object`.  
-The `Object` class includes several inherited methods that we will look at closer in this lesson.  
+* In Java, every class that doesn't explicitly extend another class, implicitly extends the `Object` class.  
+* The `Object` class includes several inherited methods that we will look at closer in this lesson.  
 
 ![Object UML](ObjectUML.png) 
 
@@ -29,11 +28,13 @@ The `Object` class includes several inherited methods that we will look at close
 * `String toString()`: Returns a **String** representation of an object.
 * `boolean equals(Object obj)`: Returns a boolean representing whether two objects are equal or not.
 
+![Object UML](ObjectUML.png) 
+
 ---
 # the `Card` class
 
-`Card.java`: Review the starter code. (Posted to Classroom).  
-`CardTest.java`: Create with `main()` method for testing.  
+* **`Card.java`**: Review the starter code. (Posted to Classroom).  
+* **`CardTest.java`**: Create with `main()` method for testing.  
 
 ![Card UML](CardUML.png)
 
@@ -42,13 +43,17 @@ The `Object` class includes several inherited methods that we will look at close
 
 * Returns a String representation of an object.  
 * Defaults to printing the reference value.  
-* Benefits of using @Override annotation
+
+*Discuss benefits of using @Override annotation.*  
+
 
 	!Java
 	@Override
 	public String toString(){
 		return rank + suit;
 	}
+
+![console output](cardSuits.png)
 
 ---
 # testing the `toString()`
@@ -64,7 +69,7 @@ The `Object` class includes several inherited methods that we will look at close
 **Can't see the card suits?**  
 Go to `Project > Settings` and change encoding to `UTF-8`  
 
-![encoding settings](utf8.png)
+![encoding settings](utf8sm.png)
 
 ---
 # `.equals()` method
@@ -75,7 +80,7 @@ Go to `Project > Settings` and change encoding to `UTF-8`
 * The intent of the `==` operator is to determine whether two objects share the same identity.
 * The default `.equals()` method from the `Object` class only checks for identity. In other words, 
 it is no different than the `==` operator.
-* It is us to define what it means for two objects to be *equal* to each other.
+* It is up to us as programmers to define what it means for two objects to be *equal* to each other.
 
 ---
 # `.equals()` method 
@@ -83,7 +88,9 @@ it is no different than the `==` operator.
 **simplified overload (not  a proper override)**  
 
 * We will define two cards equal if their ranks and suits are the same.  
-* **NOTE:** This is not a proper override. (Think about why?)
+* **NOTE:** This is not a proper override. 
+
+*Think about this. Why?*
 
 	!Java
 	public boolean equals(Card other){
@@ -100,13 +107,16 @@ it is no different than the `==` operator.
 	System.out.println(c1 == c2);
 	// should print true (both ace of spades)
 	System.out.println(c1.equals(c2));
-	
-# `.equals()` the problem with this
+
+---	
+# the problem with this
 
 * The method in the `Object` class takes an `Object` instance as a parameter.  
 * See [javadoc](https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html)
 * If we use a *polymorphic* reference for one of our playing cards our method won't be called.
 * Instead, the default inherited version from the `Object` class will be called.
+
+*c2 referenced polymorphically*
 
 	!Java
 	Card c1 = new Card(12, 0);
@@ -115,16 +125,14 @@ it is no different than the `==` operator.
 
 * This prints false since c1 and c2 have different references.  
 
-**NOTE:** This will add some complexity to our method implementation.
-
 ---
-# Properly overriding `.equals()`
+# properly overriding `.equals()`
 
 We will start by changing the method signature to:
 
 	!Java
 	@Override
-	public boolean equals(Object other){
+	public boolean equals(Object other)
 
 Notice that this will not compile. Java knows that not all `Object` instances are `Card` instances and therefore may
 not have a *rank* or *suit*. To get around this, we have to **cast** the object as Card.
@@ -155,6 +163,8 @@ We have now opened ourselves up to a potential issue by doing this. Since all re
 
 * The`instanceof` operator can be used to check for an **is-a** relationship.  
 * It will return `true` as long as the type is above it in the class hierarchy.  
+
+*demo instanceof*
 
 	!Java
 	Card c1 = new Card();
@@ -187,6 +197,9 @@ To prevent this we can use the `instanceOf` operator to check if the object actu
 Write a class `BlackjackHand` class with the following design.  
 
 ![blackjack UML](BlackjackHandUML.png)
+
+---
+# LAB-032: Part A - Continued
 
 * `BlackjackHand()`: The constructor must initialize `card1` and `card2` using the random `Card()` constructor. The value of the hand will be set by adding the values of the cards except when the sum is `22` (both cards are Aces). In this case the value of the hand must be set to `12`.
 

@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+                 Alex Russell (slightlyoff@chromium.org)
+
+  landslide modifications: Adam Zapletal (adamzap@gmail.com)
+                           Nicolas Perriault (nperriault@gmail.com)
+-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>U9L4: <code>Object</code> the Ultimate Super Class</title>
+    <!-- Styles -->
+    
+    <link rel="stylesheet" media="print" href="file://c:\users\batman\appdata\local\programs\python\python37-32\lib\site-packages\landslide\themes\default\css\print.css">
+    <link rel="stylesheet" media="screen, projection" href="file://c:\users\batman\appdata\local\programs\python\python37-32\lib\site-packages\landslide\themes\default\css\screen.css">
+    
+    
+    <!-- /Styles -->
+    <!-- Javascripts -->
+    
+    <script type="text/javascript" src="file://c:\users\batman\appdata\local\programs\python\python37-32\lib\site-packages\landslide\themes\default\js\slides.js"></script>
+    
+    
+    
+    <!-- /Javascripts -->
+</head>
+<body>
+  <div id="blank"></div>
+  <div class="presentation">
+    <div id="current_presenter_notes">
+      <div id="presenter_note"></div>
+    </div>
+    <div class="slides">
+      
+      <!-- slide source: wrapup.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-1">
+          <div class="inner">
+            
+            <header><h1>U9L4: <code>Object</code> the Ultimate Super Class</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="wrapup.md">wrapup.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              1/18
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: wrapup.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-2">
+          <div class="inner">
+            
+            <header><h1>the <code>Object</code> class</h1></header>
+            
+            
+            <section><ul>
+<li>In Java, every class that doesn't explicitly extend another class, implicitly extends the <code>Object</code> class.  </li>
+<li>The <code>Object</code> class includes several inherited methods that we will look at closer in this lesson.  </li>
+</ul>
+<p><img alt="Object UML" src="file://C:\Users\Batman\Desktop\code\eclipse-workspace\majestic-cedars\src\org\whrhs\dlamson\csa\u9\l4\ObjectUML.png" /> </p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="wrapup.md">wrapup.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              2/18
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: wrapup.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-3">
+          <div class="inner">
+            
+            <header><h1>Does Child have access to Object methods?</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Parent</span><span class="o">{</span>
+<span class="lineno">2 </span>    <span class="c1">// implementation not shown</span>
+<span class="lineno">3 </span><span class="o">}</span>
+<span class="lineno">4 </span>
+<span class="lineno">5 </span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Child</span> <span class="kd">extends</span> <span class="n">Parent</span><span class="o">{</span>
+<span class="lineno">6 </span>    <span class="c1">// implementation not shown</span>
+<span class="lineno">7 </span><span class="o">}</span>
+</pre></div>
+
+<p><img alt="Object UML" src="file://C:\Users\Batman\Desktop\code\eclipse-workspace\majestic-cedars\src\org\whrhs\dlamson\csa\u9\l4\ObjectChildUML.png" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="wrapup.md">wrapup.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              3/18
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: wrapup.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-4">
+          <div class="inner">
+            
+            <header><h1>Two Methods to look at in this lesson</h1></header>
+            
+            
+            <section><ul>
+<li><code>String toString()</code>: Returns a <strong>String</strong> representation of an object.</li>
+<li><code>boolean equals(Object obj)</code>: Returns a boolean representing whether two objects are equal or not.</li>
+</ul>
+<p><img alt="Object UML" src="file://C:\Users\Batman\Desktop\code\eclipse-workspace\majestic-cedars\src\org\whrhs\dlamson\csa\u9\l4\ObjectUML.png" /> </p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="wrapup.md">wrapup.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              4/18
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: wrapup.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-5">
+          <div class="inner">
+            
+            <header><h1>the <code>Card</code> class</h1></header>
+            
+            
+            <section><ul>
+<li><strong><code>Card.java</code></strong>: Review the starter code. (Posted to Classroom).  </li>
+<li><strong><code>CardTest.java</code></strong>: Create with <code>main()</code> method for testing.  </li>
+</ul>
+<p><img alt="Card UML" src="file://C:\Users\Batman\Desktop\code\eclipse-workspace\majestic-cedars\src\org\whrhs\dlamson\csa\u9\l4\CardUML.png" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="wrapup.md">wrapup.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              5/18
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: wrapup.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-6">
+          <div class="inner">
+            
+            <header><h1><code>toString()</code> method</h1></header>
+            
+            
+            <section><ul>
+<li>Returns a String representation of an object.  </li>
+<li>Defaults to printing the reference value.  </li>
+</ul>
+<p><em>Discuss benefits of using @Override annotation.</em>  </p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="nd">@Override</span>
+<span class="lineno">2 </span><span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">(){</span>
+<span class="lineno">3 </span>    <span class="k">return</span> <span class="n">rank</span> <span class="o">+</span> <span class="n">suit</span><span class="o">;</span>
+<span class="lineno">4 </span><span class="o">}</span>
+</pre></div>
+
+<p><img alt="console output" src="file://C:\Users\Batman\Desktop\code\eclipse-workspace\majestic-cedars\src\org\whrhs\dlamson\csa\u9\l4\cardSuits.png" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="wrapup.md">wrapup.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              6/18
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: wrapup.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-7">
+          <div class="inner">
+            
+            <header><h1>testing the <code>toString()</code></h1></header>
+            
+            
+            <section><div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="c1">// creates the Ace of Spades</span>
+<span class="lineno">2 </span><span class="n">Card</span> <span class="n">c1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Card</span><span class="o">(</span><span class="mi">12</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+<span class="lineno">3 </span><span class="c1">// creates a random card</span>
+<span class="lineno">4 </span><span class="n">Card</span> <span class="n">c2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Card</span><span class="o">();</span>
+<span class="lineno">5 </span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span><span class="o">);</span>
+<span class="lineno">6 </span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c2</span><span class="o">);</span>
+</pre></div>
+
+<p><strong>Can't see the card suits?</strong><br />
+Go to <code>Project &gt; Settings</code> and change encoding to <code>UTF-8</code>  </p>
+<p><img alt="encoding settings" src="file://C:\Users\Batman\Desktop\code\eclipse-workspace\majestic-cedars\src\org\whrhs\dlamson\csa\u9\l4\utf8sm.png" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="wrapup.md">wrapup.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              7/18
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: wrapup.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-8">
+          <div class="inner">
+            
+            <header><h1><code>.equals()</code> method</h1></header>
+            
+            
+            <section><p><strong>identity vs. equality</strong>  </p>
+<ul>
+<li>The intent of an <code>equals</code> method is to determine whether two objects are equivalent to each other.</li>
+<li>The intent of the <code>==</code> operator is to determine whether two objects share the same identity.</li>
+<li>The default <code>.equals()</code> method from the <code>Object</code> class only checks for identity. In other words, 
+it is no different than the <code>==</code> operator.</li>
+<li>It is up to us as programmers to define what it means for two objects to be <em>equal</em> to each other.</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="wrapup.md">wrapup.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              8/18
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: wrapup.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-9">
+          <div class="inner">
+            
+            <header><h1><code>.equals()</code> method</h1></header>
+            
+            
+            <section><p><strong>simplified overload (not  a proper override)</strong>  </p>
+<ul>
+<li>We will define two cards equal if their ranks and suits are the same.  </li>
+<li><strong>NOTE:</strong> This is not a proper override. </li>
+</ul>
+<p><em>Think about this. Why?</em></p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Card</span> <span class="n">other</span><span class="o">){</span>
+<span class="lineno">2 </span>    <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">rank</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">rank</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="na">suit</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="na">suit</span><span class="o">;</span>
+<span class="lineno">3 </span><span class="o">}</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="wrapup.md">wrapup.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              9/18
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: wrapup.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-10">
+          <div class="inner">
+            
+            <header><h1>testing the <code>.equals()</code> overload</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="n">Card</span> <span class="n">c1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Card</span><span class="o">(</span><span class="mi">12</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+<span class="lineno">2 </span><span class="n">Card</span> <span class="n">c2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Card</span><span class="o">(</span><span class="mi">12</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+<span class="lineno">3 </span><span class="c1">// should print false (different references)</span>
+<span class="lineno">4 </span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span> <span class="o">==</span> <span class="n">c2</span><span class="o">);</span>
+<span class="lineno">5 </span><span class="c1">// should print true (both ace of spades)</span>
+<span class="lineno">6 </span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">c2</span><span class="o">));</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="wrapup.md">wrapup.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              10/18
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: wrapup.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-11">
+          <div class="inner">
+            
+            <header><h1>the problem with this</h1></header>
+            
+            
+            <section><ul>
+<li>The method in the <code>Object</code> class takes an <code>Object</code> instance as a parameter.  </li>
+<li>See <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html">javadoc</a></li>
+<li>If we use a <em>polymorphic</em> reference for one of our playing cards our method won't be called.</li>
+<li>Instead, the default inherited version from the <code>Object</code> class will be called.</li>
+</ul>
+<p><em>c2 referenced polymorphically</em></p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="n">Card</span> <span class="n">c1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Card</span><span class="o">(</span><span class="mi">12</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+<span class="lineno">2 </span><span class="n">Object</span> <span class="n">c2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Card</span><span class="o">(</span><span class="mi">12</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+<span class="lineno">3 </span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">c2</span><span class="o">));</span>
+</pre></div>
+
+<ul>
+<li>This prints false since c1 and c2 have different references.  </li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="wrapup.md">wrapup.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              11/18
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: wrapup.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-12">
+          <div class="inner">
+            
+            <header><h1>properly overriding <code>.equals()</code></h1></header>
+            
+            
+            <section><p>We will start by changing the method signature to:</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="nd">@Override</span>
+<span class="lineno">2 </span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">other</span><span class="o">)</span>
+</pre></div>
+
+<p>Notice that this will not compile. Java knows that not all <code>Object</code> instances are <code>Card</code> instances and therefore may
+not have a <em>rank</em> or <em>suit</em>. To get around this, we have to <strong>cast</strong> the object as Card.</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="nd">@Override</span>
+<span class="lineno">2 </span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">other</span><span class="o">){</span>
+<span class="lineno">3 </span>    <span class="n">Card</span> <span class="n">otherCard</span> <span class="o">=</span> <span class="o">(</span><span class="n">Card</span><span class="o">)</span> <span class="n">other</span><span class="o">;</span>
+</pre></div>
+
+<p><strong>NOTE:</strong> Casting doesn't <em>do</em> anything. It just is our way of telling the Java compiler that we know what we are doing, and we will ensure that <code>other</code> is a valid <code>Card</code> object.</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="wrapup.md">wrapup.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              12/18
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: wrapup.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-13">
+          <div class="inner">
+            
+            <header><h1>ClassCastExceptions</h1></header>
+            
+            
+            <section><p>We have now opened ourselves up to a potential issue by doing this. Since all references are related to the <code>Object</code> class, it is now possible to pass practically anything we want to this method. If <code>other</code> isn't actually a <code>Card</code> instance a <code>ClassCastException</code> will be generated at runtime.  </p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="n">Card</span> <span class="n">c1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Card</span><span class="o">();</span>
+<span class="lineno">2 </span><span class="n">String</span> <span class="n">c2</span> <span class="o">=</span> <span class="s">&quot;Ace of Spades&quot;</span><span class="o">;</span>
+<span class="lineno">3 </span>
+<span class="lineno">4 </span><span class="c1">// Will crash at runtime    </span>
+<span class="lineno">5 </span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">c2</span><span class="o">));</span>
+</pre></div>
+
+<p><strong>Why doesn't the compiler catch this?</strong></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="wrapup.md">wrapup.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              13/18
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: wrapup.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-14">
+          <div class="inner">
+            
+            <header><h1>The <code>instanceof</code> operator</h1></header>
+            
+            
+            <section><ul>
+<li>The<code>instanceof</code> operator can be used to check for an <strong>is-a</strong> relationship.  </li>
+<li>It will return <code>true</code> as long as the type is above it in the class hierarchy.  </li>
+</ul>
+<p><em>demo instanceof</em></p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="n">Card</span> <span class="n">c1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Card</span><span class="o">();</span>
+<span class="lineno">2 </span><span class="n">String</span> <span class="n">c2</span> <span class="o">=</span> <span class="s">&quot;Ace of Spades&quot;</span><span class="o">;</span>
+<span class="lineno">3 </span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span> <span class="n">instanceOf</span> <span class="n">Card</span><span class="o">)</span> <span class="c1">// true c1 is a Card</span>
+<span class="lineno">4 </span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span> <span class="n">instanceOf</span> <span class="n">String</span><span class="o">)</span> <span class="c1">// false c1 is NOT a String </span>
+<span class="lineno">5 </span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span> <span class="n">instanceOf</span> <span class="n">Object</span><span class="o">)</span> <span class="c1">// true c1 is an Object</span>
+<span class="lineno">6 </span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c2</span> <span class="n">instanceOf</span> <span class="n">Card</span><span class="o">)</span> <span class="c1">// false c2 is NOT a Card </span>
+<span class="lineno">7 </span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c2</span> <span class="n">instanceOf</span> <span class="n">String</span><span class="o">)</span> <span class="c1">// true c2 is a String</span>
+<span class="lineno">8 </span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c2</span> <span class="n">instanceOf</span> <span class="n">Object</span><span class="o">)</span> <span class="c1">// true c2 is an Object</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="wrapup.md">wrapup.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              14/18
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: wrapup.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-15">
+          <div class="inner">
+            
+            <header><h1><code>.equals()</code> method complete</h1></header>
+            
+            
+            <section><p>To prevent this we can use the <code>instanceOf</code> operator to check if the object actually is a <code>Card</code> before trying to cast it as one. If it's not a Card, we will simply return <code>false</code> and avoid the runtime error.</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">other</span><span class="o">){</span>
+<span class="lineno">2 </span>    <span class="k">if</span><span class="o">(!(</span><span class="n">other</span> <span class="n">instanceOf</span> <span class="n">Card</span><span class="o">)){</span>
+<span class="lineno">3 </span>        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="lineno">4 </span>    <span class="o">}</span>
+<span class="lineno">5 </span>
+<span class="lineno">6 </span>    <span class="n">Card</span> <span class="n">otherCard</span> <span class="o">=</span> <span class="o">(</span><span class="n">Card</span><span class="o">)</span> <span class="n">other</span><span class="o">;</span>
+<span class="lineno">7 </span>    <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">rank</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">otherCard</span><span class="o">.</span><span class="na">rank</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="na">suit</span> <span class="o">==</span> <span class="n">otherCard</span><span class="o">.</span><span class="na">suit</span><span class="o">;</span>
+<span class="lineno">8 </span><span class="o">}</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="wrapup.md">wrapup.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              15/18
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: wrapup.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-16">
+          <div class="inner">
+            
+            <header><h1>LAB-032: Part A - BlackjackHand Class</h1></header>
+            
+            
+            <section><p>Write a class <code>BlackjackHand</code> class with the following design.  </p>
+<p><img alt="blackjack UML" src="file://C:\Users\Batman\Desktop\code\eclipse-workspace\majestic-cedars\src\org\whrhs\dlamson\csa\u9\l4\BlackjackHandUML.png" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="wrapup.md">wrapup.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              16/18
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: wrapup.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-17">
+          <div class="inner">
+            
+            <header><h1>LAB-032: Part A - Continued</h1></header>
+            
+            
+            <section><ul>
+<li>
+<p><code>BlackjackHand()</code>: The constructor must initialize <code>card1</code> and <code>card2</code> using the random <code>Card()</code> constructor. The value of the hand will be set by adding the values of the cards except when the sum is <code>22</code> (both cards are Aces). In this case the value of the hand must be set to <code>12</code>.</p>
+</li>
+<li>
+<p><code>toString()</code>: A string representation of the hand must show both cards and the value of the hand in an arrangement of your choice.  </p>
+</li>
+<li>
+<p><code>equals()</code>: Must return <code>true</code> if and only if the value of the hands are equal. This must be a proper override similar to the <code>Card</code> class.</p>
+</li>
+<li>
+<p>Submit this file to Classroom.</p>
+</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="wrapup.md">wrapup.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              17/18
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: wrapup.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-18">
+          <div class="inner">
+            
+            <header><h1>LAB-032: Part B - Simulation</h1></header>
+            
+            
+            <section><p>Use this BlackjackHand Class to run the following simulations. Simulation results will be entered into a Google Form. Do not submit your simulation code.</p>
+<ol>
+<li>Generate a player and dealer hand 1 million times. Use your <code>.equals()</code> method to determine how many times the dealer and player were dealt hands with equal values. (Enter in Google Form)</li>
+<li>The possible values of starting hands ranges from 4 to 21. Generate 1000000 hands and track how many times each of these values occurred in the simulation. (Enter in Google Form)</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="wrapup.md">wrapup.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              18/18
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div id="toc" class="sidebar hidden">
+    <h2>Table of Contents</h2>
+    <table>
+      <caption>Table of Contents</caption>
+      
+      <tr id="toc-row-1">
+        <th><a href="#slide1">U9L4: <code>Object</code> the Ultimate Super Class</a></th>
+        <td><a href="#slide1">1</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-2">
+        <th><a href="#slide2">the <code>Object</code> class</a></th>
+        <td><a href="#slide2">2</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-3">
+        <th><a href="#slide3">Does Child have access to Object methods?</a></th>
+        <td><a href="#slide3">3</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-4">
+        <th><a href="#slide4">Two Methods to look at in this lesson</a></th>
+        <td><a href="#slide4">4</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-5">
+        <th><a href="#slide5">the <code>Card</code> class</a></th>
+        <td><a href="#slide5">5</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-6">
+        <th><a href="#slide6"><code>toString()</code> method</a></th>
+        <td><a href="#slide6">6</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-7">
+        <th><a href="#slide7">testing the <code>toString()</code></a></th>
+        <td><a href="#slide7">7</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-8">
+        <th><a href="#slide8"><code>.equals()</code> method</a></th>
+        <td><a href="#slide8">8</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-9">
+        <th><a href="#slide9"><code>.equals()</code> method</a></th>
+        <td><a href="#slide9">9</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-10">
+        <th><a href="#slide10">testing the <code>.equals()</code> overload</a></th>
+        <td><a href="#slide10">10</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-11">
+        <th><a href="#slide11">the problem with this</a></th>
+        <td><a href="#slide11">11</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-12">
+        <th><a href="#slide12">properly overriding <code>.equals()</code></a></th>
+        <td><a href="#slide12">12</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-13">
+        <th><a href="#slide13">ClassCastExceptions</a></th>
+        <td><a href="#slide13">13</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-14">
+        <th><a href="#slide14">The <code>instanceof</code> operator</a></th>
+        <td><a href="#slide14">14</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-15">
+        <th><a href="#slide15"><code>.equals()</code> method complete</a></th>
+        <td><a href="#slide15">15</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-16">
+        <th><a href="#slide16">LAB-032: Part A - BlackjackHand Class</a></th>
+        <td><a href="#slide16">16</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-17">
+        <th><a href="#slide17">LAB-032: Part A - Continued</a></th>
+        <td><a href="#slide17">17</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-18">
+        <th><a href="#slide18">LAB-032: Part B - Simulation</a></th>
+        <td><a href="#slide18">18</a></td>
+      </tr>
+      
+      
+    </table>
+  </div>
+  
+  <div id="help" class="sidebar hidden">
+    <h2>Help</h2>
+    <table>
+      <caption>Help</caption>
+      <tr>
+        <th>Table of Contents</th>
+        <td>t</td>
+      </tr>
+      <tr>
+        <th>Exposé</th>
+        <td>ESC</td>
+      </tr>
+      <tr>
+        <th>Full screen slides</th>
+        <td>e</td>
+      </tr>
+      <tr>
+        <th>Presenter View</th>
+        <td>p</td>
+      </tr>
+      <tr>
+        <th>Source Files</th>
+        <td>s</td>
+      </tr>
+      <tr>
+        <th>Slide Numbers</th>
+        <td>n</td>
+      </tr>
+      <tr>
+        <th>Toggle screen blanking</th>
+        <td>b</td>
+      </tr>
+      <tr>
+        <th>Show/hide slide context</th>
+        <td>c</td>
+      </tr>
+      <tr>
+        <th>Notes</th>
+        <td>2</td>
+      </tr>
+      <tr>
+        <th>Help</th>
+        <td>h</td>
+      </tr>
+    </table>
+  </div>
+  <script>main()</script>
+</body>
+</html>
