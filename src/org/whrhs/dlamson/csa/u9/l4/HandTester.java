@@ -6,6 +6,10 @@ public class HandTester {
 	
 	public static void main(String[] args) {
 		
+		int[] nums = {1, 2, 3, 4, 5};
+		BlackjackHand bossHand = new BlackjackHand();
+		System.out.println("Can I pass an array?: " + bossHand.equals(nums));
+		
 		HashMap<Integer, Double> results = new HashMap<>();
 		int trials = 1_000_000_000;
 		int ties = 0;
