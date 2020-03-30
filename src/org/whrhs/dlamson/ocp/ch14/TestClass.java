@@ -1,6 +1,8 @@
 package org.whrhs.dlamson.ocp.ch14;
 
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class TestClass {
 
@@ -18,5 +20,22 @@ public class TestClass {
 		
 		System.out.println(carsByCompany);
 		*/
+		
+		// Consumer Functional Interface
+		Consumer<String> strConsumer = (s) -> {
+			System.out.println(s.length());
+		};
+		
+		strConsumer.accept("wuzzle");
+		
+		List<String> listOf = List.of("Monique", "Dan", "Cora");
+		
+		// old way
+		/*for(String name: listOf) {
+			System.out.println(name);
+		}
+		*/
+		
+		listOf.forEach((name) -> System.out.println(name));
 	}
 }
