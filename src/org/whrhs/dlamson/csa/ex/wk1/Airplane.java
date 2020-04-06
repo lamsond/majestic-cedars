@@ -5,14 +5,14 @@ import java.util.ArrayList;
 public class Airplane {
 	
 	private String carrier;
-	private int lastMonthMaintained;
-	private int lastYearMaintained;
+	private int monthLastMaintained;
+	private int yearLastMaintained;
 	private ArrayList<Flight> flights;
 	
 	public Airplane(String c, int m, int y) {
 		carrier = c;
-		lastMonthMaintained = m;
-		lastYearMaintained = y;
+		monthLastMaintained = m;
+		yearLastMaintained = y;
 		flights = new ArrayList<>();
 	}
 	
@@ -21,37 +21,86 @@ public class Airplane {
 	}
 	
 	public int getMonthMaintained() {
-		return lastMonthMaintained;
+		return monthLastMaintained;
 	}
 	
 	public int getYearMaintained() {
-		return lastYearMaintained;
+		return yearLastMaintained;
 	}
 	
 	public String getCarrier() {
 		return carrier;
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// PART A
 	
 	public boolean maintenanceNeeded(int currMonth, int currYear) {
+		
 		int currTotal = currYear * 12 + currMonth;
-		int maintTotal = lastYearMaintained * 12 + lastMonthMaintained;
+		int maintTotal = yearLastMaintained * 12 + monthLastMaintained;
 		
 		if(currTotal - maintTotal > 12) {
 			return true;
 		}
 		
-		for(int i = flights.size() - 1; i > 0; i++) {
+		for(int i = flights.size() - 1; i >= 0 && i > flights.size() - 4; i--) {
 			if(flights.get(i).hasMechanicalIssue()) {
 				return true;
 			}
-			if(i == flights.size() - 3) {
-				break;
-			}
 		}
 		
-		return true;
+		return false;
+
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

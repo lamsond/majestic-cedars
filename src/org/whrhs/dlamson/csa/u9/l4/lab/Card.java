@@ -44,5 +44,19 @@ public class Card {
 		return value;
 	}
 	
+	@Override
+	public String toString() {
+		return rank + suit;
+	}
+	
+	@Override
+	public boolean equals(Object other) {
+		if(!(other instanceof Card)) {
+			return false;
+		}
+		Card otherCard = (Card) other;
+		return this.rank.equals(otherCard.rank) && this.suit == otherCard.suit;
+	}
+	
 }
 

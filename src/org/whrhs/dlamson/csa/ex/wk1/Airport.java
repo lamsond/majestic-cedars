@@ -8,15 +8,59 @@ public class Airport {
 	private Airplane[] airplanes;
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// PART B
 	
 	public List<Airplane> carrierMaintenance(String carrier, int currMonth, int currYear){
-		ArrayList<Airplane> maintenanceList = new ArrayList<>();
-		for(Airplane airplane: airplanes) {
-			if(airplane.getCarrier().equals(carrier) && airplane.maintenanceNeeded(currMonth, currYear)) {
-				maintenanceList.add(airplane);
+		
+		ArrayList<Airplane> planesNeedingMaint = new ArrayList<>();
+		for(Airplane plane: airplanes) {
+			if(carrier.equals(plane.getCarrier())) {
+				if(plane.maintenanceNeeded(currMonth, currYear)) {
+					planesNeedingMaint.add(plane);
+				}
 			}
 		}
-		return maintenanceList;
+		
+		return planesNeedingMaint;
 	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

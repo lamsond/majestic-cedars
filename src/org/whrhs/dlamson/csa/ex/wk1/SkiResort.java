@@ -13,6 +13,7 @@ public class SkiResort {
 		log = new SkiingActivity[5];
 	}
 	
+	
 	public String getResortName() {
 		return name;
 	}
@@ -36,42 +37,54 @@ public class SkiResort {
 	}
 	
 	
+	
+	
+	
+	
+	
 	// PART A
 	
 	
 	
 	public void updateSkiSlopes() {
+		List<SkiSlope> slopes = getSlopes();
 		SkiingActivity[] log = getSkiLog();
-		for(SkiingActivity activity: log) {
-			SkiSlope slope = getSkiSlope(activity.getSlopeName());
-			slope.setNumDailySkiers(slope.getNumDailySkiers() + 1);
+		
+		for(SkiSlope slope: slopes) {
+			int count = 0;
+			for(SkiingActivity entry: log) {
+				if(slope.getName().equals(entry.getSlopeName())) {
+					count++;
+				}
+			}
+			slope.setNumDailySkiers(count);
 		}
+		
 	}
 	
 	// PART B
 	
-	/*
-	 * Get array of Skier objects
-	 * Get activity log
-	 * Check if skier name matches name in activity log
-	 * Get SkiSlope object
-	 * setNumRuns by getting and adding 1
-	 * setScore by getting and adding Slope difficulty
-	 * 
-	 */
+	
 	
 	public void updateSkiers() {
+
 		Skier[] skiers = getSkiers();
 		SkiingActivity[] log = getSkiLog();
 		
-		for(int i = 0; i < skiers.length; i++) {
-			for(SkiingActivity activity: log) {
-				if(activity.getSkierName().equals(skiers[i].getName())) {
-					SkiSlope slope = getSkiSlope(activity.getSlopeName());
-					skiers[i].setNumRuns(skiers[i].getNumRuns()+1);
-					skiers[i].setScore(skiers[i].getScore() + slope.getDifficulty());
+		for(Skier skier: skiers) {
+			int count = 0;
+			int score = 0;
+			for(SkiingActivity entry: log) {
+				if(skier.getName().equals(entry.getSkierName())) {
+					count++;
+					String slopeName = entry.getSlopeName();
+					SkiSlope slope = getSkiSlope(slopeName);
+					int difficulty = slope.getDifficulty();
+					score += difficulty;
 				}
 			}
+			skier.setNumRuns(count);
+			skier.setScore(score);
 		}
 
 	}
