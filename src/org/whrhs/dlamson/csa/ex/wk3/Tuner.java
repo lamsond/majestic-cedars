@@ -5,34 +5,27 @@ import java.util.ArrayList;
 public class Tuner {
 	
 	public static final String[] NOTES = {"A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"};
-	private static ArrayList<Double> frequencies = new ArrayList<>(); 
+	private ArrayList<Double> frequencies = new ArrayList<>(); 
+	private double aNote;
 	
-	public static void calculateFrequencies(double aNote) {
-		frequencies.add(aNote);
-		for(int i = 1; i < NOTES.length; i++) {
-			frequencies.add(frequencies.get(i-1) * Math.pow(2, (double)1/12));
-		}
-		System.out.println(frequencies);
+	/* constructs a tuner object by setting the frequency of the aNote and
+	 * and initializing the frequencies list based on the starting freqency of
+	 * the A note.
+	 */
+	public Tuner(double aNote) {
+		/* to be implemented in part (a) */
 	}
 	
-	public static double getFrequency(String note) {
-		for(int i = 0; i < NOTES.length; i++) {
-			if(note.equals(NOTES[i])) {
-				return frequencies.get(i);
-			}
-		}
-		return -1;
+	/* returns the frequency corresponding to a given note. Return -1.0 if the note
+	 * is not found in the NOTES array
+	 */
+	public double getFrequency(String note) {
+		/* to be implemented in part(b) */
 	}
 	
-	public static boolean inTune(String note, double frequency) {
-		double target = getFrequency(note);
-		return Math.abs(frequency - target) < 0.004 * target;
+	/* returns whether or not a given frequency is in in tune or not */
+	public boolean inTune(String note, double frequency) {
+		/* to be implemented in part(c) */
 	}
 	
-	public static void main(String[] args) {
-		calculateFrequencies(440.0);
-		System.out.println(getFrequency("G"));
-		System.out.println(inTune("G", 784));
-	}
-
 }
