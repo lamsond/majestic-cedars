@@ -21,11 +21,13 @@ public class Tuner {
 	 */
 	public double getFrequency(String note) {
 		/* to be implemented in part(b) */
+		return 0.0;
 	}
 	
 	/* returns whether or not a given frequency is in in tune or not */
 	public boolean inTune(String note, double frequency) {
 		/* to be implemented in part(c) */
+		return false;
 	}
 	
 }
