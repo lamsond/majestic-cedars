@@ -16,6 +16,11 @@ public class UnitTen {
 		System.out.println("pizza");
 	}
 	
+	public static boolean methodA() {
+		System.out.println("This used to be a ghost town");
+		return 2 + 2 == 5;
+	}
+	
 	public static void main(String[] args) {
 		System.out.println(pizza(12));
 	}

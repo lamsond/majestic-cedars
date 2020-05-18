@@ -4,14 +4,15 @@
 
 * Watch this video
 * Experiment with recursive methods on your own
-* Answer Exit Ticket Questions (will post Tuesday)
+* Answer Exit Ticket Questions (will post Tuesday, due Thursday)
 
 ---
 # Review the call stack
 
 The *stack* is a memory structure where the methods we call are executed. Think of it like a **to do** list. The first item added to every JVM stack is the `main` method.
 
-**call stack**  
+**call stack** 
+ 
 1. main()
 
 ![stack](stizack.jpg)
@@ -28,6 +29,7 @@ Whenever a method is called within another method, the new method is added to th
 	}
 	 
 **call stack**  
+
 1. methodA()
 2. main()
 
@@ -39,11 +41,12 @@ Suppose methodA includes a call to `System.out.println()`, Then `println()` will
 	!Java
 	public boolean void methodA(){
 	    int y = 13;
-	    System.out.println("this used to be a ghost town, now even the ghosts have died out");
+	    System.out.println("this used to be a ghost town");
 	    return y % 2 == 0;
 	}
 	
-**call stack**  
+**call stack** 
+ 
 1. println()
 2. methodA();
 3. main();
@@ -53,7 +56,8 @@ Suppose methodA includes a call to `System.out.println()`, Then `println()` will
 
 The items most recently added to the stack are executed first. **L**ast **I**n **F**irst **O**ut.  
 
-**call stack**  
+**call stack** 
+ 
 1. println()
 2. methodA();
 3. main();
@@ -85,6 +89,7 @@ Let's explore what happens when we call this method.
 	}
 
 **stack**  
+
 1. lasagna()
 2. main();
 
@@ -99,9 +104,15 @@ Let's explore what happens when we call this method.
 	}
 
 **stack**  
+
 1. println()
 2. lasagna()
 3. main()
+
+![las](lasConsole.png)
+
+1. lasagna()
+2. main()
 
 ---
 # Stack tracing lasagna()
@@ -114,6 +125,7 @@ Let's explore what happens when we call this method.
 	}
 
 **stack**  
+
 1. lasagna()
 2. lasagna()
 3. main()
@@ -129,10 +141,13 @@ Let's explore what happens when we call this method.
 	}
 
 **stack**  
+
 1. println()
 2. lasagna()
 3. lasagna()
 4. main()
+
+![las](lasConsole.png)
 
 ---
 # Stack tracing lasagna()
@@ -145,6 +160,7 @@ Let's explore what happens when we call this method.
 	}
 
 **stack**  
+
 1. lasagna()
 2. lasagna()
 3. lasagna()
@@ -161,21 +177,21 @@ Let's explore what happens when we call this method.
 	}
 
 **stack**  
+
 1. lasagna()
 2. lasagna()
 3. lasagna()
 4. lasagna()
 5. lasagna()
 6. lasagna()
-7. lasagna()
-8. lasagna()
-9. lasagna()
-10. main()
+7. main()
 
 ---
 # Ruh-Roh Overflow!
 
 ![scoob](scoob.jpg)
+
+The size of the stack is fixed and can vary across JVMs. It is often 1MB. When this memory fills up the program will crash. This is called a *Stack Overflow*  
 
 ---
 # Stack Overflow vs. Infinite Loop
@@ -200,8 +216,7 @@ a stack overflow uses up **memory**
 ---
 # An example that actually works
 
-**stack**  
-1. main() (calls `System.out.println(pizza(3));`)
+**stack** 
 
 	!Java
 	/* precondition: n is a positive integer */
@@ -219,10 +234,13 @@ a stack overflow uses up **memory**
 ---
 # Tracing pizza()
 
-**stack**  
+**stack** 
+
 1. pizza(3) (calls `pizza(2)`)
 2. println()
 3. main()
+
+Pizza Example
 
 	!Java
 	/* precondition: n is a positive integer */
@@ -239,11 +257,14 @@ a stack overflow uses up **memory**
 ---
 # Tracing pizza()
 
-**stack**
+**stack**  
+
 1. pizza(2) (calls `pizza(1)`)  
 2. pizza(3)
 3. println()
 4. main()
+
+Pizza Example
 
 	!Java
 	/* precondition: n is a positive integer */
@@ -260,13 +281,16 @@ a stack overflow uses up **memory**
 ---
 # Tracing pizza()
 
-**stack**
+**stack**  
+
 1. pizza(1) (returns `1`)
 2. pizza(2)   
 3. pizza(3)
 4. println() 
 5. main()
 
+Pizza Example
+
 	!Java
 	/* precondition: n is a positive integer */
 	public static int pizza(int n){
@@ -282,12 +306,15 @@ a stack overflow uses up **memory**
 ---
 # Tracing pizza()
 
-**stack**
+**stack**  
+
 1. pizza(2) (returns `2(2) + 1 -  1 = 4`)   
 2. pizza(3) 
 3. println()
 4. main()
 
+Pizza Example
+
 	!Java
 	/* precondition: n is a positive integer */
 	public static int pizza(int n){
@@ -303,11 +330,14 @@ a stack overflow uses up **memory**
 ---
 # Tracing pizza()
 
-**stack**
+**stack**  
+
 1. pizza(3) (returns `2(3) + 4 -  1 = 9`)  
 2. println() 
 3. main() 
 
+Pizza Example
+
 	!Java
 	/* precondition: n is a positive integer */
 	public static int pizza(int n){
@@ -323,9 +353,12 @@ a stack overflow uses up **memory**
 ---
 # Tracing pizza()
 
-**stack**
+**stack**  
+
 1. println(9) (prints 9) 
 2. main() 
+
+Pizza Example
 
 	!Java
 	/* precondition: n is a positive integer */
@@ -342,8 +375,11 @@ a stack overflow uses up **memory**
 ---
 # Tracing pizza()
 
-**stack**
+**stack**  
+
 1. main() (program complete) 
+
+Pizza Example
 
 	!Java
 	/* precondition: n is a positive integer */
@@ -363,6 +399,8 @@ a stack overflow uses up **memory**
 1. **Base case:** The method provided a return value for the base case when n is 1. There can be more than 1 base case. 
 2. **Recursive call to `pizza(n-1)`:** This ensured that for positive integers greater than 1, would eventually resolve to a call to the base case. 
 
+Pizza Example
+
 	!Java
 	public static int pizza(int n){
 		// base case
@@ -376,7 +414,12 @@ a stack overflow uses up **memory**
 ---
 # Textbook Classic: Factorial
 
-* **Iterative Solution**
+![both](both.png)
+
+---
+# Textbook Classic: Factorial
+
+**Iterative Solution**
 
 	!Java
 	public int factorial(int n){
@@ -387,7 +430,7 @@ a stack overflow uses up **memory**
 		return result;
 	}
 	
-* **Recursive Solution:** Using `1! = 1` as our base case, and the fact that `n! = n*(n-1)!`, we can write the following very elegant solution.
+**Recursive Solution:** Using `1! = 1` as our base case, and the fact that `n! = n*(n-1)!`, we can write the following very elegant solution.
 
 	!Java
 	public int factorial(int n){
@@ -409,6 +452,7 @@ Recursion is a tool in your programmer tool box. It works very really well for c
 ---
 # When to use recursion?
 
+**Good Choices: ** recursive numerical sequences, traversing binary trees, sorting algorithms, and binary search.  
 **Bad Choice: ** My `pizza()` method. You know what would've been a more straight forward solution to that problem?
 
 	!Java
@@ -416,11 +460,6 @@ Recursion is a tool in your programmer tool box. It works very really well for c
 		return n * n;
 	}
 
-**Recursion Pros and Cons**
---- pros ---|--- cons ---
-------------|------------
-----elegant----|---confusing----
-----
----
-# Exit Ticket
+![force it](wrongTool.jpg)
+
 
