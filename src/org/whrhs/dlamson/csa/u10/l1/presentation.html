@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+                 Alex Russell (slightlyoff@chromium.org)
+
+  landslide modifications: Adam Zapletal (adamzap@gmail.com)
+                           Nicolas Perriault (nperriault@gmail.com)
+-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Unit 10: Recursion Crash Course</title>
+    <!-- Styles -->
+    
+    <link rel="stylesheet" media="print" href="file://c:\users\batman\appdata\local\programs\python\python37-32\lib\site-packages\landslide\themes\default\css\print.css">
+    <link rel="stylesheet" media="screen, projection" href="file://c:\users\batman\appdata\local\programs\python\python37-32\lib\site-packages\landslide\themes\default\css\screen.css">
+    
+    
+    <!-- /Styles -->
+    <!-- Javascripts -->
+    
+    <script type="text/javascript" src="file://c:\users\batman\appdata\local\programs\python\python37-32\lib\site-packages\landslide\themes\default\js\slides.js"></script>
+    
+    
+    
+    <!-- /Javascripts -->
+</head>
+<body>
+  <div id="blank"></div>
+  <div class="presentation">
+    <div id="current_presenter_notes">
+      <div id="presenter_note"></div>
+    </div>
+    <div class="slides">
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-1">
+          <div class="inner">
+            
+            <header><h1>Unit 10: Recursion Crash Course</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              1/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-2">
+          <div class="inner">
+            
+            <header><h1>This Week</h1></header>
+            
+            
+            <section><ul>
+<li>Watch this video</li>
+<li>Experiment with recursive methods on your own</li>
+<li>Answer Exit Ticket Questions (will post Tuesday, due Thursday)</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              2/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-3">
+          <div class="inner">
+            
+            <header><h1>Review the call stack</h1></header>
+            
+            
+            <section><p>The <em>stack</em> is a memory structure where the methods we call are executed. Think of it like a <strong>to do</strong> list. The first item added to every JVM stack is the <code>main</code> method.</p>
+<p><strong>call stack</strong> </p>
+<ol>
+<li>main()</li>
+</ol>
+<p><img alt="stack" src="file://C:\Users\Batman\Desktop\code\eclipse-workspace\majestic-cedars\src\org\whrhs\dlamson\csa\u10\l1\stizack.jpg" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              3/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-4">
+          <div class="inner">
+            
+            <header><h1>Stack tracing</h1></header>
+            
+            
+            <section><p>Whenever a method is called within another method, the new method is added to the top of the stack.  </p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="lineno">2 </span>    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
+<span class="lineno">3 </span>    <span class="n">methodA</span><span class="o">();</span>
+<span class="lineno">4 </span><span class="o">}</span>
+</pre></div>
+
+<p><strong>call stack</strong>  </p>
+<ol>
+<li>methodA()</li>
+<li>main()</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              4/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-5">
+          <div class="inner">
+            
+            <header><h1>Stack tracing</h1></header>
+            
+            
+            <section><p>Suppose methodA includes a call to <code>System.out.println()</code>, Then <code>println()</code> will be moved to the top of the stack.</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kd">public</span> <span class="kt">boolean</span> <span class="kt">void</span> <span class="nf">methodA</span><span class="o">(){</span>
+<span class="lineno">2 </span>    <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">13</span><span class="o">;</span>
+<span class="lineno">3 </span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;this used to be a ghost town&quot;</span><span class="o">);</span>
+<span class="lineno">4 </span>    <span class="k">return</span> <span class="n">y</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">;</span>
+<span class="lineno">5 </span><span class="o">}</span>
+</pre></div>
+
+<p><strong>call stack</strong> </p>
+<ol>
+<li>println()</li>
+<li>methodA();</li>
+<li>main();</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              5/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-6">
+          <div class="inner">
+            
+            <header><h1>LIFO Structure</h1></header>
+            
+            
+            <section><p>The items most recently added to the stack are executed first. <strong>L</strong>ast <strong>I</strong>n <strong>F</strong>irst <strong>O</strong>ut.  </p>
+<p><strong>call stack</strong> </p>
+<ol>
+<li>println()</li>
+<li>methodA();</li>
+<li>main();</li>
+</ol>
+<p><img alt="stack" src="file://C:\Users\Batman\Desktop\code\eclipse-workspace\majestic-cedars\src\org\whrhs\dlamson\csa\u10\l1\stizack.jpg" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              6/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-7">
+          <div class="inner">
+            
+            <header><h1>Recursion defined</h1></header>
+            
+            
+            <section><p>A <strong>recursive method</strong> is a method that calls itself. For example</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">lasagna</span><span class="o">()</span> <span class="o">{</span>
+<span class="lineno">2 </span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;lasagna&quot;</span><span class="o">);</span>
+<span class="lineno">3 </span>    <span class="n">lasagna</span><span class="o">();</span>
+<span class="lineno">4 </span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;pizza&quot;</span><span class="o">);</span>
+<span class="lineno">5 </span><span class="o">}</span>
+</pre></div>
+
+<p><img alt="lasagna" src="file://C:\Users\Batman\Desktop\code\eclipse-workspace\majestic-cedars\src\org\whrhs\dlamson\csa\u10\l1\lasagna.jpg" /></p>
+<p>Let's explore what happens when we call this method.</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              7/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-8">
+          <div class="inner">
+            
+            <header><h1>Stack tracing lasagna()</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="lineno">2 </span>    <span class="n">lasagna</span><span class="o">();</span>
+<span class="lineno">3 </span><span class="o">}</span>
+</pre></div>
+
+<p><strong>stack</strong>  </p>
+<ol>
+<li>lasagna()</li>
+<li>main();</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              8/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-9">
+          <div class="inner">
+            
+            <header><h1>Stack tracing lasagna()</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">lasagna</span><span class="o">()</span> <span class="o">{</span>
+<span class="lineno">2 </span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;lasagna&quot;</span><span class="o">);</span>
+<span class="lineno">3 </span>    <span class="o">...</span>
+<span class="lineno">4 </span>    <span class="o">...</span>
+<span class="lineno">5 </span><span class="o">}</span>
+</pre></div>
+
+<p><strong>stack</strong>  </p>
+<ol>
+<li>println()</li>
+<li>lasagna()</li>
+<li>main()</li>
+</ol>
+<p><img alt="las" src="file://C:\Users\Batman\Desktop\code\eclipse-workspace\majestic-cedars\src\org\whrhs\dlamson\csa\u10\l1\lasConsole.png" /></p>
+<ol>
+<li>lasagna()</li>
+<li>main()</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              9/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-10">
+          <div class="inner">
+            
+            <header><h1>Stack tracing lasagna()</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">lasagna</span><span class="o">()</span> <span class="o">{</span>
+<span class="lineno">2 </span>    <span class="o">...</span>
+<span class="lineno">3 </span>    <span class="n">lasagna</span><span class="o">();</span>
+<span class="lineno">4 </span>    <span class="o">...</span>
+<span class="lineno">5 </span><span class="o">}</span>
+</pre></div>
+
+<p><strong>stack</strong>  </p>
+<ol>
+<li>lasagna()</li>
+<li>lasagna()</li>
+<li>main()</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              10/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-11">
+          <div class="inner">
+            
+            <header><h1>Stack tracing lasagna()</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">lasagna</span><span class="o">()</span> <span class="o">{</span>
+<span class="lineno">2 </span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;lasagna&quot;</span><span class="o">);</span>
+<span class="lineno">3 </span>    <span class="o">...</span>
+<span class="lineno">4 </span>    <span class="o">...</span>
+<span class="lineno">5 </span><span class="o">}</span>
+</pre></div>
+
+<p><strong>stack</strong>  </p>
+<ol>
+<li>println()</li>
+<li>lasagna()</li>
+<li>lasagna()</li>
+<li>main()</li>
+</ol>
+<p><img alt="las" src="file://C:\Users\Batman\Desktop\code\eclipse-workspace\majestic-cedars\src\org\whrhs\dlamson\csa\u10\l1\lasConsole.png" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              11/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-12">
+          <div class="inner">
+            
+            <header><h1>Stack tracing lasagna()</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">lasagna</span><span class="o">()</span> <span class="o">{</span>
+<span class="lineno">2 </span>    <span class="o">...</span>
+<span class="lineno">3 </span>    <span class="n">lasagna</span><span class="o">()</span>
+<span class="lineno">4 </span>    <span class="o">...</span>
+<span class="lineno">5 </span><span class="o">}</span>
+</pre></div>
+
+<p><strong>stack</strong>  </p>
+<ol>
+<li>lasagna()</li>
+<li>lasagna()</li>
+<li>lasagna()</li>
+<li>main()</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              12/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-13">
+          <div class="inner">
+            
+            <header><h1>a few microseconds later...</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">lasagna</span><span class="o">()</span> <span class="o">{</span>
+<span class="lineno">2 </span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;lasagna&quot;</span><span class="o">);</span>
+<span class="lineno">3 </span>    <span class="n">lasagna</span><span class="o">()</span>
+<span class="lineno">4 </span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;pizza&quot;</span><span class="o">);</span>
+<span class="lineno">5 </span><span class="o">}</span>
+</pre></div>
+
+<p><strong>stack</strong>  </p>
+<ol>
+<li>lasagna()</li>
+<li>lasagna()</li>
+<li>lasagna()</li>
+<li>lasagna()</li>
+<li>lasagna()</li>
+<li>lasagna()</li>
+<li>main()</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              13/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-14">
+          <div class="inner">
+            
+            <header><h1>Ruh-Roh Overflow!</h1></header>
+            
+            
+            <section><p><img alt="scoob" src="file://C:\Users\Batman\Desktop\code\eclipse-workspace\majestic-cedars\src\org\whrhs\dlamson\csa\u10\l1\scoob.jpg" /></p>
+<p>The size of the stack is fixed and can vary across JVMs. It is often 1MB. When this memory fills up the program will crash. This is called a <em>Stack Overflow</em>  </p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              14/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-15">
+          <div class="inner">
+            
+            <header><h1>Stack Overflow vs. Infinite Loop</h1></header>
+            
+            
+            <section><p>an infinite uses up <strong>CPU</strong> resources</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">infinteLoop</span><span class="o">(){</span>
+<span class="lineno">2 </span>    <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+<span class="lineno">3 </span>    <span class="k">while</span><span class="o">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">2</span><span class="o">){</span>
+<span class="lineno">4 </span>        <span class="n">count</span><span class="o">++;</span>
+<span class="lineno">5 </span>    <span class="o">}</span>
+<span class="lineno">6 </span><span class="o">}</span>
+</pre></div>
+
+<p>a stack overflow uses up <strong>memory</strong></p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">stackOverflow</span><span class="o">(){</span>
+<span class="lineno">2 </span>    <span class="n">stackOverflow</span><span class="o">();</span>
+<span class="lineno">3 </span><span class="o">}</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              15/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-16">
+          <div class="inner">
+            
+            <header><h1>An example that actually works</h1></header>
+            
+            
+            <section><p><strong>stack</strong> </p>
+<div class="highlight"><pre><span></span><span class="lineno"> 1 </span><span class="cm">/* precondition: n is a positive integer */</span>
+<span class="lineno"> 2 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">pizza</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">){</span>
+<span class="lineno"> 3 </span>    <span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="o">){</span>
+<span class="lineno"> 4 </span>        <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+<span class="lineno"> 5 </span>    <span class="o">}</span>
+<span class="lineno"> 6 </span>    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="n">pizza</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+<span class="lineno"> 7 </span><span class="o">}</span>
+<span class="lineno"> 8 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="lineno"> 9 </span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">pizza</span><span class="o">(</span><span class="mi">3</span><span class="o">));</span>
+<span class="lineno">10 </span><span class="o">}</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              16/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-17">
+          <div class="inner">
+            
+            <header><h1>Tracing pizza()</h1></header>
+            
+            
+            <section><p><strong>stack</strong> </p>
+<ol>
+<li>pizza(3) (calls <code>pizza(2)</code>)</li>
+<li>println()</li>
+<li>main()</li>
+</ol>
+<p>Pizza Example</p>
+<div class="highlight"><pre><span></span><span class="lineno"> 1 </span><span class="cm">/* precondition: n is a positive integer */</span>
+<span class="lineno"> 2 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">pizza</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">){</span>
+<span class="lineno"> 3 </span>    <span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="o">){</span>
+<span class="lineno"> 4 </span>        <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+<span class="lineno"> 5 </span>    <span class="o">}</span>
+<span class="lineno"> 6 </span>    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="n">pizza</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+<span class="lineno"> 7 </span><span class="o">}</span>
+<span class="lineno"> 8 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="lineno"> 9 </span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">pizza</span><span class="o">(</span><span class="mi">3</span><span class="o">));</span>
+<span class="lineno">10 </span><span class="o">}</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              17/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-18">
+          <div class="inner">
+            
+            <header><h1>Tracing pizza()</h1></header>
+            
+            
+            <section><p><strong>stack</strong>  </p>
+<ol>
+<li>pizza(2) (calls <code>pizza(1)</code>)  </li>
+<li>pizza(3)</li>
+<li>println()</li>
+<li>main()</li>
+</ol>
+<p>Pizza Example</p>
+<div class="highlight"><pre><span></span><span class="lineno"> 1 </span><span class="cm">/* precondition: n is a positive integer */</span>
+<span class="lineno"> 2 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">pizza</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">){</span>
+<span class="lineno"> 3 </span>    <span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="o">){</span>
+<span class="lineno"> 4 </span>        <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+<span class="lineno"> 5 </span>    <span class="o">}</span>
+<span class="lineno"> 6 </span>    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="n">pizza</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+<span class="lineno"> 7 </span><span class="o">}</span>
+<span class="lineno"> 8 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="lineno"> 9 </span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">pizza</span><span class="o">(</span><span class="mi">3</span><span class="o">));</span>
+<span class="lineno">10 </span><span class="o">}</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              18/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-19">
+          <div class="inner">
+            
+            <header><h1>Tracing pizza()</h1></header>
+            
+            
+            <section><p><strong>stack</strong>  </p>
+<ol>
+<li>pizza(1) (returns <code>1</code>)</li>
+<li>pizza(2)   </li>
+<li>pizza(3)</li>
+<li>println() </li>
+<li>main()</li>
+</ol>
+<p>Pizza Example</p>
+<div class="highlight"><pre><span></span><span class="lineno"> 1 </span><span class="cm">/* precondition: n is a positive integer */</span>
+<span class="lineno"> 2 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">pizza</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">){</span>
+<span class="lineno"> 3 </span>    <span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="o">){</span>
+<span class="lineno"> 4 </span>        <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+<span class="lineno"> 5 </span>    <span class="o">}</span>
+<span class="lineno"> 6 </span>    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="n">pizza</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+<span class="lineno"> 7 </span><span class="o">}</span>
+<span class="lineno"> 8 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="lineno"> 9 </span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">pizza</span><span class="o">(</span><span class="mi">3</span><span class="o">));</span>
+<span class="lineno">10 </span><span class="o">}</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              19/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-20">
+          <div class="inner">
+            
+            <header><h1>Tracing pizza()</h1></header>
+            
+            
+            <section><p><strong>stack</strong>  </p>
+<ol>
+<li>pizza(2) (returns <code>2(2) + 1 -  1 = 4</code>)   </li>
+<li>pizza(3) </li>
+<li>println()</li>
+<li>main()</li>
+</ol>
+<p>Pizza Example</p>
+<div class="highlight"><pre><span></span><span class="lineno"> 1 </span><span class="cm">/* precondition: n is a positive integer */</span>
+<span class="lineno"> 2 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">pizza</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">){</span>
+<span class="lineno"> 3 </span>    <span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="o">){</span>
+<span class="lineno"> 4 </span>        <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+<span class="lineno"> 5 </span>    <span class="o">}</span>
+<span class="lineno"> 6 </span>    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="n">pizza</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+<span class="lineno"> 7 </span><span class="o">}</span>
+<span class="lineno"> 8 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="lineno"> 9 </span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">pizza</span><span class="o">(</span><span class="mi">3</span><span class="o">));</span>
+<span class="lineno">10 </span><span class="o">}</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              20/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-21">
+          <div class="inner">
+            
+            <header><h1>Tracing pizza()</h1></header>
+            
+            
+            <section><p><strong>stack</strong>  </p>
+<ol>
+<li>pizza(3) (returns <code>2(3) + 4 -  1 = 9</code>)  </li>
+<li>println() </li>
+<li>main() </li>
+</ol>
+<p>Pizza Example</p>
+<div class="highlight"><pre><span></span><span class="lineno"> 1 </span><span class="cm">/* precondition: n is a positive integer */</span>
+<span class="lineno"> 2 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">pizza</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">){</span>
+<span class="lineno"> 3 </span>    <span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="o">){</span>
+<span class="lineno"> 4 </span>        <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+<span class="lineno"> 5 </span>    <span class="o">}</span>
+<span class="lineno"> 6 </span>    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="n">pizza</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+<span class="lineno"> 7 </span><span class="o">}</span>
+<span class="lineno"> 8 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="lineno"> 9 </span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">pizza</span><span class="o">(</span><span class="mi">3</span><span class="o">));</span>
+<span class="lineno">10 </span><span class="o">}</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              21/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-22">
+          <div class="inner">
+            
+            <header><h1>Tracing pizza()</h1></header>
+            
+            
+            <section><p><strong>stack</strong>  </p>
+<ol>
+<li>println(9) (prints 9) </li>
+<li>main() </li>
+</ol>
+<p>Pizza Example</p>
+<div class="highlight"><pre><span></span><span class="lineno"> 1 </span><span class="cm">/* precondition: n is a positive integer */</span>
+<span class="lineno"> 2 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">pizza</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">){</span>
+<span class="lineno"> 3 </span>    <span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="o">){</span>
+<span class="lineno"> 4 </span>        <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+<span class="lineno"> 5 </span>    <span class="o">}</span>
+<span class="lineno"> 6 </span>    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="n">pizza</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+<span class="lineno"> 7 </span><span class="o">}</span>
+<span class="lineno"> 8 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="lineno"> 9 </span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">pizza</span><span class="o">(</span><span class="mi">3</span><span class="o">));</span>
+<span class="lineno">10 </span><span class="o">}</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              22/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-23">
+          <div class="inner">
+            
+            <header><h1>Tracing pizza()</h1></header>
+            
+            
+            <section><p><strong>stack</strong>  </p>
+<ol>
+<li>main() (program complete) </li>
+</ol>
+<p>Pizza Example</p>
+<div class="highlight"><pre><span></span><span class="lineno"> 1 </span><span class="cm">/* precondition: n is a positive integer */</span>
+<span class="lineno"> 2 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">pizza</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">){</span>
+<span class="lineno"> 3 </span>    <span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="o">){</span>
+<span class="lineno"> 4 </span>        <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+<span class="lineno"> 5 </span>    <span class="o">}</span>
+<span class="lineno"> 6 </span>    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="n">pizza</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+<span class="lineno"> 7 </span><span class="o">}</span>
+<span class="lineno"> 8 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+<span class="lineno"> 9 </span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">pizza</span><span class="o">(</span><span class="mi">3</span><span class="o">));</span>
+<span class="lineno">10 </span><span class="o">}</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              23/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-24">
+          <div class="inner">
+            
+            <header><h1>Why Does This Work?</h1></header>
+            
+            
+            <section><ol>
+<li><strong>Base case:</strong> The method provided a return value for the base case when n is 1. There can be more than 1 base case. </li>
+<li><strong>Recursive call to <code>pizza(n-1)</code>:</strong> This ensured that for positive integers greater than 1, would eventually resolve to a call to the base case. </li>
+</ol>
+<p>Pizza Example</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">pizza</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">){</span>
+<span class="lineno">2 </span>    <span class="c1">// base case</span>
+<span class="lineno">3 </span>    <span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="o">){</span>
+<span class="lineno">4 </span>        <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+<span class="lineno">5 </span>    <span class="o">}</span>
+<span class="lineno">6 </span>    <span class="c1">// recursive call</span>
+<span class="lineno">7 </span>    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="n">pizza</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+<span class="lineno">8 </span><span class="o">}</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              24/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-25">
+          <div class="inner">
+            
+            <header><h1>Textbook Classic: Factorial</h1></header>
+            
+            
+            <section><p><img alt="both" src="file://C:\Users\Batman\Desktop\code\eclipse-workspace\majestic-cedars\src\org\whrhs\dlamson\csa\u10\l1\both.png" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              25/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-26">
+          <div class="inner">
+            
+            <header><h1>Textbook Classic: Factorial</h1></header>
+            
+            
+            <section><p><strong>Iterative Solution</strong></p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">factorial</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">){</span>
+<span class="lineno">2 </span>    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+<span class="lineno">3 </span>    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+<span class="lineno">4 </span>        <span class="n">result</span> <span class="o">*=</span> <span class="n">i</span><span class="o">;</span>
+<span class="lineno">5 </span>    <span class="o">}</span>
+<span class="lineno">6 </span>    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+<span class="lineno">7 </span><span class="o">}</span>
+</pre></div>
+
+<p><strong>Recursive Solution:</strong> Using <code>1! = 1</code> as our base case, and the fact that <code>n! = n*(n-1)!</code>, we can write the following very elegant solution.</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">factorial</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">){</span>
+<span class="lineno">2 </span>    <span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="o">){</span>
+<span class="lineno">3 </span>        <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+<span class="lineno">4 </span>    <span class="o">}</span>
+<span class="lineno">5 </span>    <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">factorial</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+<span class="lineno">6 </span><span class="o">}</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              26/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-27">
+          <div class="inner">
+            
+            <header><h1>When to use recursion?</h1></header>
+            
+            
+            <section><p>Recursion is a tool in your programmer tool box. It works very really well for certain problems and for others a more direct approach is better. For example:  </p>
+<p><strong>Good Choice: </strong>Generating Fibonacci Numbers. The sequence is defined as the sum of the two <em>previous</em> terms (F(n) = F(n-1) + F(n-2), mathematicians call this a <strong>recursive definition</strong>).</p>
+<p><img alt="rabbit" src="file://C:\Users\Batman\Desktop\code\eclipse-workspace\majestic-cedars\src\org\whrhs\dlamson\csa\u10\l1\honeyBunny.jpg" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              27/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: recursion.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-28">
+          <div class="inner">
+            
+            <header><h1>When to use recursion?</h1></header>
+            
+            
+            <section><p><strong>Good Choices: </strong> recursive numerical sequences, traversing binary trees, sorting algorithms, and binary search.<br />
+<strong>Bad Choice: </strong> My <code>pizza()</code> method. You know what would've been a more straight forward solution to that problem?</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">pizza</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">){</span>
+<span class="lineno">2 </span>    <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">n</span><span class="o">;</span>
+<span class="lineno">3 </span><span class="o">}</span>
+</pre></div>
+
+<p><img alt="force it" src="file://C:\Users\Batman\Desktop\code\eclipse-workspace\majestic-cedars\src\org\whrhs\dlamson\csa\u10\l1\wrongTool.jpg" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="recursion.md">recursion.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              28/28
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div id="toc" class="sidebar hidden">
+    <h2>Table of Contents</h2>
+    <table>
+      <caption>Table of Contents</caption>
+      
+      <tr id="toc-row-1">
+        <th><a href="#slide1">Unit 10: Recursion Crash Course</a></th>
+        <td><a href="#slide1">1</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-2">
+        <th><a href="#slide2">This Week</a></th>
+        <td><a href="#slide2">2</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-3">
+        <th><a href="#slide3">Review the call stack</a></th>
+        <td><a href="#slide3">3</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-4">
+        <th><a href="#slide4">Stack tracing</a></th>
+        <td><a href="#slide4">4</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-5">
+        <th><a href="#slide5">Stack tracing</a></th>
+        <td><a href="#slide5">5</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-6">
+        <th><a href="#slide6">LIFO Structure</a></th>
+        <td><a href="#slide6">6</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-7">
+        <th><a href="#slide7">Recursion defined</a></th>
+        <td><a href="#slide7">7</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-8">
+        <th><a href="#slide8">Stack tracing lasagna()</a></th>
+        <td><a href="#slide8">8</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-9">
+        <th><a href="#slide9">Stack tracing lasagna()</a></th>
+        <td><a href="#slide9">9</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-10">
+        <th><a href="#slide10">Stack tracing lasagna()</a></th>
+        <td><a href="#slide10">10</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-11">
+        <th><a href="#slide11">Stack tracing lasagna()</a></th>
+        <td><a href="#slide11">11</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-12">
+        <th><a href="#slide12">Stack tracing lasagna()</a></th>
+        <td><a href="#slide12">12</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-13">
+        <th><a href="#slide13">a few microseconds later...</a></th>
+        <td><a href="#slide13">13</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-14">
+        <th><a href="#slide14">Ruh-Roh Overflow!</a></th>
+        <td><a href="#slide14">14</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-15">
+        <th><a href="#slide15">Stack Overflow vs. Infinite Loop</a></th>
+        <td><a href="#slide15">15</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-16">
+        <th><a href="#slide16">An example that actually works</a></th>
+        <td><a href="#slide16">16</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-17">
+        <th><a href="#slide17">Tracing pizza()</a></th>
+        <td><a href="#slide17">17</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-18">
+        <th><a href="#slide18">Tracing pizza()</a></th>
+        <td><a href="#slide18">18</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-19">
+        <th><a href="#slide19">Tracing pizza()</a></th>
+        <td><a href="#slide19">19</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-20">
+        <th><a href="#slide20">Tracing pizza()</a></th>
+        <td><a href="#slide20">20</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-21">
+        <th><a href="#slide21">Tracing pizza()</a></th>
+        <td><a href="#slide21">21</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-22">
+        <th><a href="#slide22">Tracing pizza()</a></th>
+        <td><a href="#slide22">22</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-23">
+        <th><a href="#slide23">Tracing pizza()</a></th>
+        <td><a href="#slide23">23</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-24">
+        <th><a href="#slide24">Why Does This Work?</a></th>
+        <td><a href="#slide24">24</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-25">
+        <th><a href="#slide25">Textbook Classic: Factorial</a></th>
+        <td><a href="#slide25">25</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-26">
+        <th><a href="#slide26">Textbook Classic: Factorial</a></th>
+        <td><a href="#slide26">26</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-27">
+        <th><a href="#slide27">When to use recursion?</a></th>
+        <td><a href="#slide27">27</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-28">
+        <th><a href="#slide28">When to use recursion?</a></th>
+        <td><a href="#slide28">28</a></td>
+      </tr>
+      
+      
+    </table>
+  </div>
+  
+  <div id="help" class="sidebar hidden">
+    <h2>Help</h2>
+    <table>
+      <caption>Help</caption>
+      <tr>
+        <th>Table of Contents</th>
+        <td>t</td>
+      </tr>
+      <tr>
+        <th>Exposé</th>
+        <td>ESC</td>
+      </tr>
+      <tr>
+        <th>Full screen slides</th>
+        <td>e</td>
+      </tr>
+      <tr>
+        <th>Presenter View</th>
+        <td>p</td>
+      </tr>
+      <tr>
+        <th>Source Files</th>
+        <td>s</td>
+      </tr>
+      <tr>
+        <th>Slide Numbers</th>
+        <td>n</td>
+      </tr>
+      <tr>
+        <th>Toggle screen blanking</th>
+        <td>b</td>
+      </tr>
+      <tr>
+        <th>Show/hide slide context</th>
+        <td>c</td>
+      </tr>
+      <tr>
+        <th>Notes</th>
+        <td>2</td>
+      </tr>
+      <tr>
+        <th>Help</th>
+        <td>h</td>
+      </tr>
+    </table>
+  </div>
+  <script>main()</script>
+</body>
+</html>
